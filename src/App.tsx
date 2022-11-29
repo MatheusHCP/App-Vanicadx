@@ -8,22 +8,34 @@
  * @format
  */
 
-import React, {type PropsWithChildren} from 'react';
+import React, {useState} from 'react';
 import {
+  Button,
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
-  View,
 } from 'react-native';
+
 import { Header } from './components/Header';
 
 const App = () => {
+
+  const [name, setName] = useState<string>('Matheus')
+  const [title, setTitle] = useState<string>('Bem vindo ao RN')
+
+  function handlePressButton(){
+    
+    setName((previousState) => {
+      if (previousState == "Ismael")
+        return "Matheus"
+      else
+        return "Ismael"
+    })
+  }
+
   return (
     <SafeAreaView style={styles.app}>
-      <Header name='Matheus' title="Welcome to RN!" />
+      <Header name={name} title={title} />
+      <Button title='Change name' onPress={handlePressButton}/>
     </SafeAreaView>
   );
 };
