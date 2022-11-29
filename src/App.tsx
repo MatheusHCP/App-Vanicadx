@@ -1,41 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
-import React, {useState} from 'react';
+import React, {useState, useEffect, useCallback, useMemo, useRef} from 'react';
 import {
   Button,
   SafeAreaView,
   StyleSheet,
+  TextInput,
 } from 'react-native';
-
 import { Header } from './components/Header';
+
 
 const App = () => {
 
   const [name, setName] = useState<string>('Matheus')
   const [title, setTitle] = useState<string>('Bem vindo ao RN')
 
-  function handlePressButton(){
-    
-    setName((previousState) => {
-      if (previousState == "Ismael")
-        return "Matheus"
-      else
-        return "Ismael"
-    })
-  }
+
+  useEffect(() => {
+    if(name == 'Ismael'){
+      setTitle('Hello')
+    }
+    else{
+      setTitle("Olá!")
+    }
+  }, [name])
+
+  const handlePressButton = useCallback(() => {
+   if(name == 'Ismael'){
+    setName('Matheus')
+   }
+   else{
+    setName('Ismael')
+   }
+  }, [name])
+
+
+  const inputRef = useRef<TextInput>({} as TextInput)
 
   return (
     <SafeAreaView style={styles.app}>
-      <Header name={name} title={title} />
-      <Button title='Change name' onPress={handlePressButton}/>
+      <Header/>
     </SafeAreaView>
   );
 };
@@ -43,6 +45,12 @@ const App = () => {
 const styles = StyleSheet.create({
   app:{
     flex: 1
+  },
+  input: {
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    padding: 20,
+    color: 'white',
+    fontSize: 20
   }
 });
 
