@@ -1,56 +1,55 @@
-import React, {useState, useEffect, useCallback, useMemo, useRef} from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   SafeAreaView,
   StyleSheet,
-  TextInput,
 } from 'react-native';
+import { ThemeProvider } from 'styled-components';
+import { CustomButton } from './components/CustomButton';
 import { Header } from './components/Header';
 
 
 const App = () => {
 
-  const [name, setName] = useState<string>('Matheus')
-  const [title, setTitle] = useState<string>('Bem vindo ao RN')
-
-
-  useEffect(() => {
-    if(name == 'Ismael'){
-      setTitle('Hello')
+  const themeDark = {
+    colors: {
+      primary: 'black',
+      onPrimary: 'white',
+      secondary: 'red',
+      onSecondary: 'black'
     }
-    else{
-      setTitle("Olá!")
+  }
+
+  const themeLight = {
+    colors: {
+      primary: 'white',
+      onPrimary: 'black',
+      secondary: 'green',
+      onSecondary: 'black'
     }
-  }, [name])
+  }
 
-  const handlePressButton = useCallback(() => {
-   if(name == 'Ismael'){
-    setName('Matheus')
-   }
-   else{
-    setName('Ismael')
-   }
-  }, [name])
-
-
-  const inputRef = useRef<TextInput>({} as TextInput)
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   return (
-    <SafeAreaView style={styles.app}>
-      <Header/>
-    </SafeAreaView>
+    <ThemeProvider theme={theme == 'light' ? themeLight : themeDark}>
+      <SafeAreaView style={styles.app}>
+        <Header/>
+        <CustomButton title='Change Theme' onPress={() => setTheme(old => {
+          if(old == 'light')
+            return 'dark'
+          else
+            return 'light'
+        })} />
+      </SafeAreaView>
+    </ThemeProvider>
   );
 };
 
 const styles = StyleSheet.create({
   app:{
-    flex: 1
-  },
-  input: {
-    backgroundColor: 'rgba(0,0,0,0.5)',
-    padding: 20,
-    color: 'white',
-    fontSize: 20
+    flex: 1,
+    backgroundColor: "#000"
   }
 });
 
