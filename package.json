@@ -7,11 +7,14 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "preandroid": "react-native-asset",
+    "preios": "react-native-asset"
   },
   "dependencies": {
     "react": "18.1.0",
     "react-native": "0.70.6",
+    "react-native-asset": "^2.0.1",
     "styled-components": "^5.3.6"
   },
   "resolutions": {
