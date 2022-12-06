@@ -11,6 +11,6 @@ export function CustomButton({onPress} : ButtonProps){
   const themeContext = useContext(ThemeContext)
 
 return (
-  <ButtonRN color={themeContext.colors.secondary} title="change theme" onPress={onPress} ></ButtonRN>
+  <ButtonRN color={themeContext.colors.primary.main} title="change theme" onPress={onPress} ></ButtonRN>
   );
 }
