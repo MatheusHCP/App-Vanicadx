@@ -1,4 +1,4 @@
-import { Typography } from "styled-components";
+import { Border, Spacing, Typography } from "styled-components";
 import { Fonts } from "../fonts";
 
 export const typographyCommon : Typography = {
@@ -53,5 +53,23 @@ export const typographyCommon : Typography = {
   overline: {
     fontSize: 14,
     fontFamily: Fonts.openSansLight
+  }
+}
+
+export const spacing : Spacing = {
+  ty: 4,
+  xs: 5,
+  sm: 10,
+  md: 20,
+  lg: 25,
+  xl: 32,
+  xxl: 40,
+  xxxl: 42,
+}
+
+export const borders : Border = {
+  radius: {
+    xs: 4,
+    sm: 10
   }
 }
