@@ -19,7 +19,7 @@ declare module 'styled-components'{
 
   export interface TypographyProps{
     fontFamily: string;
-    fontSize: Number;
+    fontSize: number;
   }
 
   export interface Typography{
