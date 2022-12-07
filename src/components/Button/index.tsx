@@ -8,7 +8,7 @@ export function Button({
   children,
   mode = 'contained',
   color = 'primary',
-  loading = true,
+  loading = false,
   onPress,
   ...rest
 }: ButtonProps) {
