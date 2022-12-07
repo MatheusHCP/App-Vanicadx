@@ -12,9 +12,12 @@
     "preios": "react-native-asset"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.1.0",
     "react": "18.1.0",
     "react-native": "0.70.6",
     "react-native-asset": "^2.0.1",
+    "react-native-safe-area-context": "^4.4.1",
+    "react-native-screens": "^3.18.2",
     "styled-components": "^5.3.6"
   },
   "resolutions": {
