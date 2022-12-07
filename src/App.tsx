@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
+  Alert,
   View,
 } from 'react-native';
-import { ThemeProvider } from 'styled-components';
-import { CustomButton } from './components/CustomButton';
-import { Header } from './components/Header';
 import { Icon } from './components/Icon';
-import { Text } from './components/Text';
-import { themeDark } from './constants/styles/themes/dark';
-import { themeLight } from './constants/styles/themes/light';
 import useAppearence from './hooks/useAppearence';
 import { ContainerAreaView } from './styles';
 import { Button } from './components/Button';
 import { Separator } from './components/Separator';
+import { InputValueRef } from './components/Input/types';
+import Input from './components/Input';
+import { ThemeProvider } from 'styled-components';
 
 
 const App = () => {
 
   const {theme} = useAppearence();
+
+  const refEmail = useRef<InputValueRef>({value: ''});
+  const refPassword = useRef<InputValueRef>({value: ''});
+
+  const handlePress = () => {
+    Alert.alert(refEmail.current?.value || 'Não tinha email', refPassword.current?.value || 'Não Tinha password')
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -29,7 +32,13 @@ const App = () => {
           <Separator width={80}/>
           <Icon icon='grafico' size={150} />
         </View>
-        <Button mode='outlined' color='surface' >Change Icons</Button>
+        <View>
+          <Input ref={refEmail} icon='grafico' placeholder='johndoe@gmail.com' label='E-mail' iconPosition='right' />
+          <Separator height={10} />
+          <Input ref={refPassword} label="Password" placeholder='Sua senha' secureTextEntry/>
+        </View>
+        <Button mode='outlined' color='surface' onPress={handlePress} >Change Icons</Button>
+        <Separator />
       </ContainerAreaView>
     </ThemeProvider>
   );

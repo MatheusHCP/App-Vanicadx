@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { Props } from './types';
 
 export const Container = styled.View<Props>`
-  background-color: red;
+  background-color: ${({theme}) => theme.colors.background.main};
   ${({height}) => !! height && `height: ${height}px;` }
   ${({height}) => !! height && `min-height: ${height}px;` }
   ${({height}) => !! height && `max-height: ${height}px;` }

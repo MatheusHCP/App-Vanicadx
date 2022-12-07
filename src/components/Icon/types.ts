@@ -5,7 +5,7 @@ import { NameIconTypes } from "../../constants/icons";
 export interface IconOptionProps{
   icon: NameIconTypes
   size?: number
-  activeColor?: ColorsType
+  activeColor?: string
 }
 
 export interface IconProps extends ImageProps, IconOptionProps{
