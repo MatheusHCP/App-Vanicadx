@@ -4,6 +4,7 @@ import useAppearence from './hooks/useAppearence';
 import { NavigationContainer } from '@react-navigation/native';
 import { ThemeProvider } from 'styled-components';
 import { Routes } from './navigation';
+import { AuthProvider } from './context/Auth';
 
 
 const App = () => {
@@ -14,9 +15,11 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <Routes/>
-      </NavigationContainer>
+      <AuthProvider>
+        <NavigationContainer>
+          <Routes/>
+        </NavigationContainer>
+      </AuthProvider>
     </ThemeProvider>
   );
 };
