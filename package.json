@@ -12,6 +12,7 @@
     "preios": "react-native-asset"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.5.1",
     "@react-navigation/native": "^6.1.0",
     "@react-navigation/native-stack": "^6.9.5",
     "react": "18.1.0",
