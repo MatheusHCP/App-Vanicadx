@@ -14,7 +14,7 @@ export function OnBoarding(){
 
 return (
    <SafeAreaView>
-    <Button loading={loading} onPress={() => signIn({email: 'TESTE', password:"TESTE"})}>Sign In</Button>
+    <Button loading={loading} onPress={() => signIn({email: 'matheus@teste.com', password:"123123"})}>Sign In</Button>
    </SafeAreaView>
   );
 }

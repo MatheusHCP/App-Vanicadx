@@ -14,3 +14,8 @@ export interface AuthContextProps{
   signOut: () => void;
 
 }
+
+
+export const asyncUserKeys={
+  user: 'Vacinadex:user'
+}
