@@ -4,7 +4,7 @@ import { Home } from "../../screens/SignedIn/Home";
 import { Profile } from "../../screens/SignedIn/Profile";
 import { Icon } from '../../components/Icon';
 
-const BottomTab = createBottomTabNavigator();
+const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 const BottomTabNavigator = () => {
   return (
