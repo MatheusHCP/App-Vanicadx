@@ -1,11 +1,19 @@
-import morte from '../assets/images/morte.png';
-import fantasma from '../assets/images/fantasma.png';
-import grafico from '../assets/images/grafico.png';
-import olhoAberto from '../assets/images/olho-aberto.png';
-import olhoFechado from '../assets/images/olho-fechado.png';
+import morte from '../assets/icons/morte.png';
+import fantasma from '../assets/icons/fantasma.png';
+import grafico from '../assets/icons/grafico.png';
+import olhoAberto from '../assets/icons/olho-aberto.png';
+import olhoFechado from '../assets/icons/olho-fechado.png';
 import doctor from '../assets/images/doctor/Vector.png';
+import vaccine from '../assets/icons/vaccine-plus/vaccine.png';
 
-export type NameIconTypes = 'morte' | 'fantasma' | 'grafico' | 'olhoFechado' | 'olhoAberto' | 'doctor';
+export type NameIconTypes = 
+ |'morte' 
+ |'fantasma'
+ | 'grafico'
+ | 'olhoFechado'
+ | 'olhoAberto'
+ | 'doctor'
+ | 'vaccine'
 
 export default {
   morte,
@@ -13,5 +21,6 @@ export default {
   grafico,
   olhoAberto,
   doctor,
-  olhoFechado
+  olhoFechado,
+  vaccine
 };
