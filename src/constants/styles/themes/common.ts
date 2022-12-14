@@ -11,12 +11,12 @@ export const typographyCommon : Typography = {
     fontFamily: Fonts.openSansLight
   },
   h3: {
-    fontSize: 48,
-    fontFamily: Fonts.openSansRegular
+    fontSize: 32,
+    fontFamily: Fonts.montSerratBold
   },
   h4: {
     fontSize: 32,
-    fontFamily: Fonts.montSerratBold
+    fontFamily: Fonts.montSerratSemiBold
   },
   h5: {
     fontSize: 24,
@@ -27,7 +27,7 @@ export const typographyCommon : Typography = {
     fontFamily: Fonts.montSerratRegular
   },
   subTitle1: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: Fonts.openSansRegular
   },
   subTitle2: {
@@ -63,8 +63,8 @@ export const spacing : Spacing = {
   md: 20,
   lg: 25,
   xl: 32,
-  xxl: 40,
-  xxxl: 42,
+  xxl: 45,
+  xxxl: 100,
 }
 
 export const borders : Border = {

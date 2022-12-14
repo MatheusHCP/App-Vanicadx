@@ -5,11 +5,11 @@ import { typographyCommon, borders, spacing } from "./common";
 export const themeDark : DefaultTheme = {
   colors: {
     primary: {
-      main: Colors.brand05,
+      main: Colors.brand01,
       onMain: Colors.white
     },
     secondary: {
-      main: Colors.brand02,
+      main: Colors.brand01,
       onMain: Colors.white
     },
     error: {
@@ -17,12 +17,12 @@ export const themeDark : DefaultTheme = {
       onMain: Colors.white
     },
     background: {
-      main: Colors.black,
-      onMain: Colors.white
+      main: Colors.white,
+      onMain: Colors.black
     },
     surface: {
-      main: Colors.white,
-      onMain: Colors.neutrais
+      main: Colors.black,
+      onMain: Colors.white
     },
   },
   typography: typographyCommon,
