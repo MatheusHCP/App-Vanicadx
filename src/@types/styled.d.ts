@@ -25,7 +25,7 @@ declare module 'styled-components'{
     onMain: string;
   }
 
-  export type ColorsType = 'primary' | 'secondary' | 'background' | 'error' | 'surface'
+  export type ColorsType = 'primary' | 'secondary' | 'background' | 'error' | 'surface' | 'surface500' | 'surface600'
 
   export interface PaletteType{
     primary: ColorType;
@@ -33,6 +33,8 @@ declare module 'styled-components'{
     background: ColorType;
     error: ColorType;
     surface: ColorType;
+    surface500: ColorType;
+    surface600: ColorType;
   }
 
   export interface TypographyProps{

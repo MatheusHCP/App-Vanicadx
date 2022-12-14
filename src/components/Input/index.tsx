@@ -7,7 +7,7 @@ import {Border, Container, Error, IconContainer, InputInternal, Label} from './s
 import {InputProps, InputValueRef} from './types';
 
 const Input : React.ForwardRefRenderFunction<InputValueRef, InputProps> = ({
-  color="surface",
+  color="surface500",
   secureTextEntry,
   icon,
   iconColor,
@@ -54,7 +54,7 @@ const Input : React.ForwardRefRenderFunction<InputValueRef, InputProps> = ({
       return (
         <TouchableOpacity onPress={() => setPasswordVisible(old => !old)}>
           <IconContainer iconPosition={iconPosition}>
-            <Icon icon={passwordVisible ? 'olhoAberto' : 'olhoFechado'} activeColor={selectedColorForActiveColorIcon}/>
+            <Icon icon={passwordVisible ? 'eyeopen' : 'eyeclosed'} activeColor={selectedColorForActiveColorIcon}/>
           </IconContainer>
         </TouchableOpacity>
       )
@@ -74,7 +74,7 @@ const Input : React.ForwardRefRenderFunction<InputValueRef, InputProps> = ({
   return (
     <Container>
       {!!label && (
-        <Label color='surface' typography='body3' >{label}</Label>
+        <Label color='surface600' typography='body3' >{label}</Label>
       )}
       <Border color='transparent' borderColor={error ? colors.error.main : colors[color].main}>
       {iconPosition == 'left' && renderIcon()}

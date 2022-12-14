@@ -1,3 +1,4 @@
+import { TypographyTypes } from 'styled-components';
 import styled from 'styled-components/native';
 import { Mode } from './types';
 
@@ -29,13 +30,20 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
 
 interface TitleProps {
   readonly color: string;
+  readonly typography: TypographyTypes;
 }
 
 export const Title = styled.Text<TitleProps>`
-  font-family: ${({theme}) => theme.typography.body2.fontFamily};
-  font-size: ${({theme}) => theme.typography.body2.fontSize}px;
+  font-family: ${({theme, typography}) => theme.typography[typography].fontFamily};
+  font-size: ${({theme, typography}) => theme.typography[typography].fontSize}px;
   align-self: center;
   color: ${({color}) => color}
+
+`;
+
+export const AbsoluteIcon = styled.View`
+  position: absolute;
+  left: ${({theme}) => theme.spacing.md}px
 
 `;
 
