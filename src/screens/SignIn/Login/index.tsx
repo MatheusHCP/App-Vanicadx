@@ -14,12 +14,20 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import {Container, AccessText} from './styles';
 import { schemaLogin } from './validations';
 import { BackButton } from '../../../components/BackButton';
+import useAuth from '../../../hooks/useAuth';
+import { RequestSignInData } from '../../../services/resource/auth/types';
 
 export function Login() {
 
   const {spacing} = useTheme()
   const navigation = useSignInNavigation();
 
+
+  /**
+   * Hooks
+   */
+
+  const {loading, signIn} = useAuth()
 
     /**
    * Forms
@@ -45,10 +53,8 @@ export function Login() {
 
   const handleGoBack = () => navigation.goBack();
 
-  const onSubmit = () => {
-    handleSubmit(({email, password}) => {
-      console.log({email,password})
-    })
+  async function onSubmit(data : RequestSignInData){
+    await signIn(data)
   }
 
   async function handleGoogleButton(){
@@ -117,7 +123,7 @@ export function Login() {
         )}
       />
       <Separator height={spacing.md} />
-      <Button onPress={onSubmit}>Login</Button>
+      <Button onPress={handleSubmit(onSubmit)} disabled={loading} loading={loading}>Login</Button>
       <Separator height={spacing.md} />
       <AccessText typography='body3' color='surface500'>ou acesse com login social</AccessText>
       {Platform.OS == 'ios' && (

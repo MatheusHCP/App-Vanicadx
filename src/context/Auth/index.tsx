@@ -4,6 +4,10 @@ import { asyncUserKeys, AuthContextProps } from "./types";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { signInResource } from "../../services/resource/auth";
 import { RequestSignInData } from "../../services/resource/auth/types";
+import { Alert } from "react-native";
+import api from "../../services/api";
+import { RequestCreateUserData } from "../../services/resource/user/types";
+import { createUserResource } from "../../services/resource/user";
 
 export const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
 // Colocado esse as no objeto dentro do Context para evittar de dar erro no typescript,
@@ -20,17 +24,22 @@ export const AuthProvider: React.FC = ({children}) => {
    * Callbacks
    */
 
+  async function saveUserToStorageAndConfigToken(data: UserDTO){
+    api.defaults.headers.Authorization = `Bearer ${data.token}`;
+    await AsyncStorage.setItem(asyncUserKeys.user, JSON.stringify(data))
+  }
+
   const signIn = async (data: RequestSignInData) => {
     try {
       setLoading(true)
       const response = await signInResource(data)
       setUser(response.user)
+      saveUserToStorageAndConfigToken(response.user)
       setLoading(false)
       setIsSignedIn(true)
-      // api.default.headers.Authorization = 'Bearer ${response.data.token}
-      AsyncStorage.setItem(asyncUserKeys.user, JSON.stringify(response.user))
+     
     } catch (error) {
-      
+      Alert.alert("Erro ao efetuar login", "Não foi possível realizar o login, tente novamente.")
     }
     finally{
       setLoading(false)
@@ -38,9 +47,27 @@ export const AuthProvider: React.FC = ({children}) => {
 
   }
 
+  async function signUp(data: RequestCreateUserData){
+    try {
+      setLoading(true)
+      const response = await createUserResource(data)
+      setUser(response.user)
+      setLoading(false)
+      setIsSignedIn(true)
+      await saveUserToStorageAndConfigToken(response.user)
+    } catch (error) {
+      Alert.alert("Erro ao efetuar cadastro", "tente novamente.")
+    }
+    finally{
+      setLoading(false)
+    }
+  }
+
+
   const signOut = async () => {
     setIsSignedIn(false)
     setUser(undefined)
+    api.defaults.headers.Authorization = `Bearer `;
     await AsyncStorage.clear()
   }
 
@@ -61,7 +88,7 @@ export const AuthProvider: React.FC = ({children}) => {
   
 
   return(
-    <AuthContext.Provider value={{user, loading, isSignedIn, signIn, signOut}}>
+    <AuthContext.Provider value={{user, loading, isSignedIn, signIn, signUp, signOut}}>
       {!rehydrateLoading && children}
     </AuthContext.Provider>
   )

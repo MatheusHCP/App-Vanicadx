@@ -11,7 +11,8 @@ createServer({
       firstName: 'Matheus',
       lastName: 'Pereira',
       email: 'matheus@teste.com',
-      password: '123123'
+      password: '123123',
+      token: 'eyDASDSADqd91jdas98jd9ahd8ahs8dha8sda@'
     })
   },
   routes(){
@@ -32,8 +33,14 @@ createServer({
 
     })
     this.post('/user', (schema, request) => {
+      /**
+       *   firstName: string;
+           lastName: string;
+           token: string;
+           password: string;ww
+       */
       const body = JSON.parse(request.requestBody);
-      const user = schema.users.create(body);
+      const user = schema.users.create({...body, token: "eydasdaushdasdhauds@dasudhausd"});
       return user;
     })
   }

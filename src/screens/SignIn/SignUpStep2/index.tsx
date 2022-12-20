@@ -14,12 +14,20 @@ import {Button} from '../../../components/Button';
 import ProgressBar from 'react-native-progress/Bar'
 import { BackButton } from '../../../components/BackButton';
 import { SignUpStep2SignInStackRouteProp } from '../../../@types/routes/SignIn/SignInStackNavigator';
+import useAuth from '../../../hooks/useAuth';
 
 export function SignUpStep2({route} : {route: SignUpStep2SignInStackRouteProp}) {
   const {spacing, colors} = useTheme();
   const navigation = useSignInNavigation();
   const {width} = useWindowDimensions()
   const params = route.params
+
+  /**
+   * Hooks
+   */
+
+  const {signUp, loading} = useAuth()
+
 
   /**
    * Forms
@@ -56,7 +64,9 @@ export function SignUpStep2({route} : {route: SignUpStep2SignInStackRouteProp}) 
 
   const handleGoBack = () => navigation.goBack();
 
-  const onSubmit = data => console.log(params);
+  const onSubmit = async data => {
+    await signUp({email: params.email, password: data.password, firstName: params.firstName, lastName: params.lastName})
+  };
 
   return (
     <Container>
@@ -121,7 +131,7 @@ export function SignUpStep2({route} : {route: SignUpStep2SignInStackRouteProp}) 
         )}
       />
       <Separator height={spacing.md} />
-      <Button onPress={handleSubmit(onSubmit)}>Continuar</Button>
+      <Button onPress={handleSubmit(onSubmit)} loading={loading} disabled={loading}>Continuar</Button>
       <Separator height={spacing.md} />
     </Container>
   );
