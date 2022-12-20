@@ -7,6 +7,8 @@ import eyeclosed from '../assets/icons/eye-closed/eye-closed.png';
 import apple from '../assets/icons/apple/apple.png';
 import google from '../assets/icons/google/google.png';
 import back from '../assets/icons/back/Vector.png';
+import profile from '../assets/icons/profile/profile.png';
+import home from '../assets/icons/home/Home.png';
 
 export type NameIconTypes = 
  | 'doctor'
@@ -18,6 +20,8 @@ export type NameIconTypes =
  | 'apple'
  | 'google'
  | 'back'
+ | 'profile'
+ | 'home'
 
 export default {
   vaccine,
@@ -29,4 +33,6 @@ export default {
   google,
   doctor,
   back,
+  profile,
+  home
 };

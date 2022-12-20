@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { Props } from './types';
 
 export const Container = styled.View<Props>`
-  background-color: ${({theme}) => theme.colors.background.main};
+  background-color: transparent;
   ${({height}) => !! height && `height: ${height}px;` }
   ${({height}) => !! height && `min-height: ${height}px;` }
   ${({height}) => !! height && `max-height: ${height}px;` }
