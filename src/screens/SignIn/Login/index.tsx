@@ -1,5 +1,5 @@
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, Platform } from 'react-native';
 import { useTheme } from 'styled-components/native';
 import { Button } from '../../../components/Button';
 import {HeaderOptions} from '../../../components/HeaderOptions';
@@ -10,7 +10,7 @@ import {Text} from '../../../components/Text';
 import useSignInNavigation from '../../../hooks/useSignInNavigation';
 import {useForm, Controller} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import {Container, AccessText} from './styles';
 import { schemaLogin } from './validations';
 import { BackButton } from '../../../components/BackButton';
@@ -49,6 +49,15 @@ export function Login() {
     handleSubmit(({email, password}) => {
       console.log({email,password})
     })
+  }
+
+  async function handleGoogleButton(){
+    try {
+      const {user} = await GoogleSignin.signIn();
+      console.log(user)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
 
@@ -111,10 +120,14 @@ export function Login() {
       <Button onPress={onSubmit}>Login</Button>
       <Separator height={spacing.md} />
       <AccessText typography='body3' color='surface500'>ou acesse com login social</AccessText>
+      {Platform.OS == 'ios' && (
+        <>
+          <Separator height={spacing.md} />
+          <Button mode='outlined' typography='caption' icon={<Icon icon='apple'/>} color='secondary'>Continuar com a Apple</Button>
+        </>
+      )}
       <Separator height={spacing.md} />
-      <Button mode='outlined' typography='caption' icon={<Icon icon='apple'/>} color='secondary'>Continuar com a Apple</Button>
-      <Separator height={spacing.md} />
-      <Button mode='outlined' typography='caption' icon={<Icon icon='google'/>} color='secondary'>Continuar com o Google</Button>
+      <Button mode='outlined' typography='caption' onPress={handleGoogleButton} icon={<Icon icon='google'/>} color='secondary'>Continuar com o Google</Button>
       <Separator height={spacing.md} />
     </Container>
   );
