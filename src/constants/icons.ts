@@ -9,6 +9,8 @@ import google from '../assets/icons/google/google.png';
 import back from '../assets/icons/back/Vector.png';
 import profile from '../assets/icons/profile/profile.png';
 import home from '../assets/icons/home/Home.png';
+import location from '../assets/icons/location/Localizacao.png';
+import plus from '../assets/icons/plus/Mais.png';
 
 export type NameIconTypes = 
  | 'doctor'
@@ -22,6 +24,8 @@ export type NameIconTypes =
  | 'back'
  | 'profile'
  | 'home'
+ | 'location'
+ | 'plus'
 
 export default {
   vaccine,
@@ -34,5 +38,7 @@ export default {
   doctor,
   back,
   profile,
-  home
+  home,
+  location,
+  plus,
 };
