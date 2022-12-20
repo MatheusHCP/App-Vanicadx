@@ -11,7 +11,7 @@ import useSignInNavigation from '../../../hooks/useSignInNavigation';
 import {useForm, Controller} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 
-import {Container, AccessText, PressableX} from './styles';
+import {Container, AccessText} from './styles';
 import { schemaLogin } from './validations';
 import { BackButton } from '../../../components/BackButton';
 
@@ -88,7 +88,7 @@ export function Login() {
           />
         )}
       />
-            <Controller
+        <Controller
         control={control}
         name="password"
         render={({field: {onBlur, onChange, value, ref}}) => (

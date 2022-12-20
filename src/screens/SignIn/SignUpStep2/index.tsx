@@ -1,24 +1,25 @@
 import React, { useMemo } from 'react';
 import {useTheme} from 'styled-components/native';
 import useSignInNavigation from '../../../hooks/useSignInNavigation';
-import {Container, PressableX} from './styles';
+import {Container} from './styles';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import {schemaSignup} from './validations';
+import {schemaSignupStep2} from './validations';
 import {StatusBar, useWindowDimensions} from 'react-native';
 import {HeaderOptions} from '../../../components/HeaderOptions';
-import {Icon} from '../../../components/Icon';
 import {Text} from '../../../components/Text';
 import {Separator} from '../../../components/Separator';
 import Input from '../../../components/Input';
 import {Button} from '../../../components/Button';
 import ProgressBar from 'react-native-progress/Bar'
 import { BackButton } from '../../../components/BackButton';
+import { SignUpStep2SignInStackRouteProp } from '../../../@types/routes/SignIn/SignInStackNavigator';
 
-export function SignUp() {
+export function SignUpStep2({route} : {route: SignUpStep2SignInStackRouteProp}) {
   const {spacing, colors} = useTheme();
   const navigation = useSignInNavigation();
   const {width} = useWindowDimensions()
+  const params = route.params
 
   /**
    * Forms
@@ -30,11 +31,10 @@ export function SignUp() {
     setValue,
     formState: {errors},
   } = useForm({
-    resolver: yupResolver(schemaSignup),
+    resolver: yupResolver(schemaSignupStep2),
     defaultValues: {
-      email: '',
-      firstName: '',
-      lastName: '',
+      password: '',
+      confirmPassword: ''
     },
   });
 
@@ -56,19 +56,19 @@ export function SignUp() {
 
   const handleGoBack = () => navigation.goBack();
 
-  const onSubmit = data => navigation.navigate('signUpStep2', data);
+  const onSubmit = data => console.log(params);
 
   return (
     <Container>
       <StatusBar barStyle={'dark-content'} />
       <HeaderOptions
         left={
-          <BackButton icon='close' onPress={handleGoBack}/>
+          <BackButton icon='back' onPress={handleGoBack}/>
         }
         center={<Separator width={spacing.md} />}
         right={
           <ProgressBar
-            progress={0.5}
+            progress={1}
             color={colors.primary.main}
             unfilledColor={colors.surface50.main}
             borderWidth={0}
@@ -80,53 +80,43 @@ export function SignUp() {
       <Separator height={spacing.md} />
       <Text typography="h3">Cadastro</Text>
       <Separator height={spacing.md} />
-      <Text typography='caption' color='surface100'>Informações pessoais</Text>
+      <Text typography='caption' color='surface100'>Sua senha precisa ter pelo menos {'\n'}8 caracteres</Text>
       <Separator height={spacing.md} />
       <Controller
         control={control}
-        name="firstName"
+        name="password"
         render={({field: {onBlur, onChange, value, ref}}) => (
-          <Input
-            ref={ref}
-            onChange={onChange}
-            onChangeText={text => setValue('firstName', text)}
-            value={value}
-            onBlur={onBlur}
-            label="Nome"
-            error={errors.firstName?.message}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="lastName"
-        render={({field: {onBlur, onChange, value, ref}}) => (
-          <Input
-            ref={ref}
-            onChange={onChange}
-            onChangeText={text => setValue('lastName', text)}
-            value={value}
-            onBlur={onBlur}
-            label="Sobrenome"
-            error={errors.lastName?.message}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="email"
-        render={({field: {onBlur, onChange, value, ref}}) => (
-          <Input
+          <Input 
             ref={ref}
             autoCapitalize="none"
-            autoComplete="email"
-            keyboardType="email-address"
+            autoComplete='password'
             onChange={onChange}
-            onChangeText={text => setValue('email', text)}
+            onChangeText={text => setValue('password', text)}
             value={value}
             onBlur={onBlur}
-            label="Email"
-            error={errors.email?.message}
+            label='Senha'
+            secureTextEntry
+            iconColor='primary'
+            error={errors.password?.message}
+          />
+        )}
+      />
+      <Controller
+        control={control}
+        name="confirmPassword"
+        render={({field: {onBlur, onChange, value, ref}}) => (
+          <Input 
+            ref={ref}
+            autoCapitalize="none"
+            autoComplete='password'
+            onChange={onChange}
+            onChangeText={text => setValue('confirmPassword', text)}
+            value={value}
+            onBlur={onBlur}
+            label='Confirmar senha'
+            secureTextEntry
+            iconColor='primary'
+            error={errors.confirmPassword?.message}
           />
         )}
       />
