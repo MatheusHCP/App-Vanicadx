@@ -21,6 +21,7 @@ const App = () => {
   
   return (
     <ThemeProvider theme={theme}>
+      {/*@ts-ignore */}
       <AuthProvider>
         <NavigationContainer>
           <Routes/>

@@ -11,6 +11,7 @@ import {Text} from '../../../components/Text';
 import {Separator} from '../../../components/Separator';
 import Input from '../../../components/Input';
 import {Button} from '../../../components/Button';
+// @ts-ignore
 import ProgressBar from 'react-native-progress/Bar'
 import { BackButton } from '../../../components/BackButton';
 import { SignUpStep2SignInStackRouteProp } from '../../../@types/routes/SignIn/SignInStackNavigator';
@@ -64,7 +65,7 @@ export function SignUpStep2({route} : {route: SignUpStep2SignInStackRouteProp}) 
 
   const handleGoBack = () => navigation.goBack();
 
-  const onSubmit = async data => {
+  const onSubmit = async (data : {password: string, confirmPassword: string}) => {
     await signUp({email: params.email, password: data.password, firstName: params.firstName, lastName: params.lastName})
   };
 

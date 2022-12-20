@@ -14,6 +14,7 @@ export const AuthContext = createContext<AuthContextProps>({} as AuthContextProp
 // com isso meio que estou definindo que esse objeto atende todos as props da interface
 // AuthContextProps.
 
+// @ts-ignore
 export const AuthProvider: React.FC = ({children}) => {
   const [user, setUser] = useState<UserDTO>();
   const [loading, setLoading] = useState(false);
