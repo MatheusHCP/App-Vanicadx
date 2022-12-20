@@ -13,6 +13,7 @@ import {Separator} from '../../../components/Separator';
 import Input from '../../../components/Input';
 import {Button} from '../../../components/Button';
 import ProgressBar from 'react-native-progress/Bar'
+import { BackButton } from '../../../components/BackButton';
 
 export function SignUp() {
   const {spacing, colors} = useTheme();
@@ -55,20 +56,14 @@ export function SignUp() {
 
   const handleGoBack = () => navigation.goBack();
 
-  const onSubmit = async () => 
-    await handleSubmit((data) => {
-      console.log(data);
-    });
-  
+  const onSubmit = data => console.log(data);
 
   return (
     <Container>
       <StatusBar barStyle={'dark-content'} />
       <HeaderOptions
         left={
-          <PressableX onPress={handleGoBack}>
-            <Icon icon="close" size={15} />
-          </PressableX>
+          <BackButton icon='close' onPress={handleGoBack}/>
         }
         center={<Separator width={spacing.md} />}
         right={
@@ -136,7 +131,7 @@ export function SignUp() {
         )}
       />
       <Separator height={spacing.md} />
-      <Button onPress={onSubmit}>Continuar</Button>
+      <Button onPress={handleSubmit(onSubmit)}>Continuar</Button>
       <Separator height={spacing.md} />
     </Container>
   );

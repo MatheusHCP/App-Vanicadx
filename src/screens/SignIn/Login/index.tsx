@@ -13,6 +13,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 
 import {Container, AccessText, PressableX} from './styles';
 import { schemaLogin } from './validations';
+import { BackButton } from '../../../components/BackButton';
 
 export function Login() {
 
@@ -56,9 +57,7 @@ export function Login() {
       <StatusBar barStyle={"dark-content"} />
       <HeaderOptions
         left={
-          <PressableX onPress={handleGoBack}>
-            <Icon icon="close" size={15} />
-          </PressableX>
+          <BackButton icon='close' onPress={handleGoBack}/>
         }
         right={
           <Text typography="body3" color="primary">
