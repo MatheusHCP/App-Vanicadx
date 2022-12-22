@@ -5,5 +5,5 @@ import { ColorsType, TypographyTypes } from "styled-components";
 export interface Props extends TextProps {
   children: string | React.ReactNode;
   color?: ColorsType;
-  typography: TypographyTypes
+  typography?: TypographyTypes
 }

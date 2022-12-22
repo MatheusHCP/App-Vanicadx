@@ -10,3 +10,9 @@ export const ScrollViewItems = styled.ScrollView`
    padding: ${({theme}) => theme.spacing.md}px;
 
 `;
+
+export const Content = styled.View`
+
+   padding: 0 ${({theme}) => theme.spacing.md}px;
+
+`;

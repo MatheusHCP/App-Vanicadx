@@ -35,6 +35,8 @@ declare module 'styled-components'{
    | 'surface100'
    | 'surface500'
    | 'surface600'
+   | 'orange'
+   | 'lightGreen'
 
   export interface PaletteType{
     primary: ColorType;
@@ -46,6 +48,8 @@ declare module 'styled-components'{
     surface100: ColorType;
     surface500: ColorType;
     surface600: ColorType;
+    orange: ColorType;
+    lightGreen: ColorType;
   }
 
   export interface TypographyProps{
@@ -60,6 +64,7 @@ declare module 'styled-components'{
     h4: TypographyProps;
     h5: TypographyProps;
     h6: TypographyProps;
+    h7: TypographyProps;
     subTitle1: TypographyProps;
     subTitle2: TypographyProps;
     body1: TypographyProps;
@@ -76,6 +81,7 @@ declare module 'styled-components'{
     'h4'|
     'h5'|
     'h6'|
+    'h7'|
     'subTitle1'|
     'subTitle2'|
     'body1'|
