@@ -20,6 +20,12 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow camera to scan the QR Code</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow library to scan the QR Code</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Allow microphone to scan the QR Code</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
