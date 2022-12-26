@@ -12,6 +12,9 @@ import home from '../assets/icons/home/Home.png';
 import location from '../assets/icons/location/Localizacao.png';
 import plus from '../assets/icons/plus/Mais.png';
 import calendar from '../assets/icons/calendar/calendar.png';
+import arrowRight from '../assets/icons/arrowRight/arrow.png';
+import logout from '../assets/icons/logout/Logout.png';
+import notification from '../assets/icons/notification/Notification.png';
 
 export type NameIconTypes = 
  | 'doctor'
@@ -28,6 +31,9 @@ export type NameIconTypes =
  | 'location'
  | 'plus'
  | 'calendar'
+ | 'arrowRight'
+ | 'logout'
+ | 'notification'
 
 export default {
   vaccine,
@@ -44,4 +50,7 @@ export default {
   location,
   plus,
   calendar,
+  arrowRight,
+  logout,
+  notification
 };
