@@ -52,7 +52,7 @@ export function AddVaccineManually() {
         <Content>
           <StatusBar barStyle={'dark-content'} />
           <Separator height={spacing.md} />
-          <Pressable>
+          <Pressable onPress={goBack}>
             <Icon icon="close" size={15} />
           </Pressable>
           <Separator height={spacing.md} />

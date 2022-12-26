@@ -5,7 +5,7 @@ import {Container, PressableX} from './styles';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {schemaSignup} from './validations';
-import {StatusBar, useWindowDimensions} from 'react-native';
+import {StatusBar, useWindowDimensions, ScrollView} from 'react-native';
 import {HeaderOptions} from '../../../components/HeaderOptions';
 import {Icon} from '../../../components/Icon';
 import {Text} from '../../../components/Text';
@@ -14,6 +14,7 @@ import Input from '../../../components/Input';
 import {Button} from '../../../components/Button';
 import ProgressBar from 'react-native-progress/Bar'
 import { BackButton } from '../../../components/BackButton';
+import { AvoidKeyboard } from '../../../components/AvoidKeyboard';
 
 export function SignUp() {
   const {spacing, colors} = useTheme();
@@ -28,6 +29,7 @@ export function SignUp() {
     control,
     handleSubmit,
     setValue,
+    setFocus,
     formState: {errors},
   } = useForm({
     resolver: yupResolver(schemaSignup),
@@ -59,7 +61,9 @@ export function SignUp() {
   const onSubmit = data => navigation.navigate('signUpStep2', data);
 
   return (
+    <AvoidKeyboard>
     <Container>
+      <ScrollView showsVerticalScrollIndicator={false}>
       <StatusBar barStyle={'dark-content'} />
       <HeaderOptions
         left={
@@ -92,6 +96,10 @@ export function SignUp() {
             onChangeText={text => setValue('firstName', text)}
             value={value}
             onBlur={onBlur}
+            returnKeyType="next" // Return key type muda o estilo do botão de ENTER do teclado.
+            onSubmitEditing={() => {
+              setFocus('lastName')
+            }}
             label="Nome"
             error={errors.firstName?.message}
           />
@@ -107,6 +115,10 @@ export function SignUp() {
             onChangeText={text => setValue('lastName', text)}
             value={value}
             onBlur={onBlur}
+            returnKeyType="next"
+            onSubmitEditing={() => {
+              setFocus('email')
+            }}
             label="Sobrenome"
             error={errors.lastName?.message}
           />
@@ -124,6 +136,8 @@ export function SignUp() {
             onChange={onChange}
             onChangeText={text => setValue('email', text)}
             value={value}
+            returnKeyType="done"
+            onSubmitEditing={handleSubmit(onSubmit)}
             onBlur={onBlur}
             label="Email"
             error={errors.email?.message}
@@ -133,6 +147,8 @@ export function SignUp() {
       <Separator height={spacing.md} />
       <Button onPress={handleSubmit(onSubmit)}>Continuar</Button>
       <Separator height={spacing.md} />
+    </ScrollView>
     </Container>
+    </AvoidKeyboard>
   );
 }
