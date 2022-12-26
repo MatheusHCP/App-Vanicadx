@@ -31,7 +31,7 @@ export function Home() {
         <SmallCard icon="location" title={`Procurar local\n de vacinação`} />
       </ScrollViewItems>
       <Content>
-        <Text typography='h7'>Próximas vacinas</Text>
+        <Text typography='h8'>Próximas vacinas</Text>
         <Separator height={15}/>
         <VaccineCard title='Triplice Viral' date={new Date(2022, 12, 23).toISOString()} />
         <Separator height={15}/>
@@ -41,7 +41,7 @@ export function Home() {
       </Content>
       <Content>
         <Separator height={15} />
-        <Text typography='h7'>Campanhas de vacinação</Text>
+        <Text typography='h8'>Campanhas de vacinação</Text>
         <Separator height={15} />
         <Banner source={require('../../../assets/images/banner/covid.png')}/>
         <Separator height={15} />

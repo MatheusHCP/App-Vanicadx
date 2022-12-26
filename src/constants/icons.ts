@@ -15,6 +15,8 @@ import calendar from '../assets/icons/calendar/calendar.png';
 import arrowRight from '../assets/icons/arrowRight/arrow.png';
 import logout from '../assets/icons/logout/Logout.png';
 import notification from '../assets/icons/notification/Notification.png';
+import lapis from '../assets/icons/lapis/lapis.png';
+import qrcode from '../assets/icons/qrcode/qrcode.png';
 
 export type NameIconTypes = 
  | 'doctor'
@@ -34,6 +36,8 @@ export type NameIconTypes =
  | 'arrowRight'
  | 'logout'
  | 'notification'
+ | 'qrcode'
+ | 'lapis'
 
 export default {
   vaccine,
@@ -52,5 +56,7 @@ export default {
   calendar,
   arrowRight,
   logout,
-  notification
+  notification,
+  lapis,
+  qrcode
 };
