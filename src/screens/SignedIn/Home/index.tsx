@@ -11,9 +11,13 @@ import {Header} from './localComponents/Header';
 import {SmallCard} from './localComponents/SmallCard';
 
 import {Container, Content, ScrollViewItems} from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 export function Home() {
+  const {navigate} = useNavigation()
   const {signOut} = useAuth();
+
+  const handleAddVaccineScreen = () => navigate('addVaccine') 
 
   return (
     <Container>
@@ -22,7 +26,7 @@ export function Home() {
       <ScrollViewItems horizontal>
         <SmallCard icon="vaccine" title={`Minhas\nVacinas`} />
         <Separator width={15} />
-        <SmallCard icon="plus" title={`Adicionar\nvacinas`} />
+        <SmallCard  onPress={handleAddVaccineScreen} icon="plus" title={`Adicionar\nvacinas`} />
         <Separator width={15} />
         <SmallCard icon="location" title={`Procurar local\n de vacinação`} />
       </ScrollViewItems>
