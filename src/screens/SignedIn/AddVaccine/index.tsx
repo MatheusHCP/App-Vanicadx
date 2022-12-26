@@ -18,6 +18,7 @@ export function AddVaccine(){
 
 
   const handleGoToQrCode = () => navigate('qrCode')
+  const handleGoToAddVaccineManually = () => navigate('AddVaccineManually')
 
 return (
    <Container>
@@ -42,14 +43,16 @@ return (
         </Card>
       </Pressable>
       <Separator height={spacing.md}/>
-      <Card>
-        <RowCard>
-          <Icon icon='lapis' size={22} />
-          <Separator width={spacing.md}/>
-          <Text typography='caption'>Inserção manual</Text>
-        </RowCard>
-        <Icon icon='arrowRight' size={12}/>
-      </Card>
+      <Pressable onPress={handleGoToAddVaccineManually}>
+        <Card>
+          <RowCard>
+            <Icon icon='lapis' size={22} />
+            <Separator width={spacing.md}/>
+            <Text typography='caption'>Inserção manual</Text>
+          </RowCard>
+          <Icon icon='arrowRight' size={12}/>
+        </Card>
+      </Pressable>
     <Separator height={spacing.md}/>
    </Container>
   );

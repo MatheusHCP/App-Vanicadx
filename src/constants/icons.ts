@@ -17,6 +17,8 @@ import logout from '../assets/icons/logout/Logout.png';
 import notification from '../assets/icons/notification/Notification.png';
 import lapis from '../assets/icons/lapis/lapis.png';
 import qrcode from '../assets/icons/qrcode/qrcode.png';
+import radioButton from '../assets/icons/radioButton/Vector.png';
+import radioButtonActive from '../assets/icons/radioButtonActive/Vector.png';
 
 export type NameIconTypes = 
  | 'doctor'
@@ -38,6 +40,8 @@ export type NameIconTypes =
  | 'notification'
  | 'qrcode'
  | 'lapis'
+ | 'radioButton'
+ | 'radioButtonActive'
 
 export default {
   vaccine,
@@ -58,5 +62,7 @@ export default {
   logout,
   notification,
   lapis,
-  qrcode
+  qrcode,
+  radioButton,
+  radioButtonActive
 };
