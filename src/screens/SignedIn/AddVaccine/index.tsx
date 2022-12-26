@@ -13,8 +13,11 @@ import {
 } from './styles';
 
 export function AddVaccine(){
-  const {goBack} = useNavigation();
+  const {goBack, navigate} = useNavigation();
   const {spacing} = useTheme();
+
+
+  const handleGoToQrCode = () => navigate('qrCode')
 
 return (
    <Container>
@@ -28,14 +31,16 @@ return (
     <Separator height={spacing.sm}/>
     <Text typography='caption'>{`Gostaria de adicionar por meio de\nqual método?`}</Text>
     <Separator height={spacing.lg}/>
-      <Card>
-        <RowCard>
-          <Icon icon='qrcode' size={22} />
-          <Separator width={spacing.md}/>
-          <Text typography='caption'>Leitura de código QR</Text>
-        </RowCard>
-        <Icon icon='arrowRight' size={12}/>
-      </Card>
+      <Pressable onPress={handleGoToQrCode}>
+        <Card>
+          <RowCard>
+            <Icon icon='qrcode' size={22} />
+            <Separator width={spacing.md}/>
+            <Text typography='caption'>Leitura de código QR</Text>
+          </RowCard>
+          <Icon icon='arrowRight' size={12}/>
+        </Card>
+      </Pressable>
       <Separator height={spacing.md}/>
       <Card>
         <RowCard>
