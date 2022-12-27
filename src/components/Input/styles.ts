@@ -10,7 +10,8 @@ interface BorderProps {
 
 export const Container = styled.View`
 
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
+  // FIXME: Update Screens that use this input
 
 `;
 
