@@ -21,7 +21,7 @@ export function Home() {
 
   return (
     <Container>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
       <Header />
       <ScrollViewItems horizontal>
         <SmallCard icon="vaccine" title={`Minhas\nVacinas`} />
