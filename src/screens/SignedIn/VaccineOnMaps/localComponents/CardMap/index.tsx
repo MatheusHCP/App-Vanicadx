@@ -19,7 +19,7 @@ return (
     <ImageLocal source={image}/>
     <Separator  width={spacing.sm}/>
     <ContainerDescription>
-      <Text>{title}</Text>
+      <Text typography='overline'>{title}</Text>
       <Separator width={spacing.sm} />
       <Text>{distance}</Text>
     </ContainerDescription>
