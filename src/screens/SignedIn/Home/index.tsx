@@ -14,11 +14,12 @@ import {Container, Content, ScrollViewItems} from './styles';
 import { useNavigation } from '@react-navigation/native';
 
 export function Home() {
-  const {navigate} = useNavigation()
+  const {navigate} = useNavigation<SignedInStackNavigatorProps>()
   const {signOut} = useAuth();
 
   const handleAddVaccineScreen = () => navigate('addVaccine') 
   const handleMyVaccine = () => navigate('MyVaccine') 
+  const handleVaccineOnMaps = () => navigate('VaccineOnMaps') 
 
   return (
     <Container>
@@ -29,7 +30,7 @@ export function Home() {
         <Separator width={15} />
         <SmallCard  onPress={handleAddVaccineScreen} icon="plus" title={`Adicionar\nvacinas`} />
         <Separator width={15} />
-        <SmallCard icon="location" title={`Procurar local\n de vacinação`} />
+        <SmallCard onPress={handleVaccineOnMaps} icon="location" title={`Procurar local\n de vacinação`} />
       </ScrollViewItems>
       <Content>
         <Text typography='h8'>Próximas vacinas</Text>
