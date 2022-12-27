@@ -64,7 +64,7 @@ export function SignUp() {
     <AvoidKeyboard>
     <Container>
       <ScrollView showsVerticalScrollIndicator={false}>
-      <StatusBar barStyle={'dark-content'} />
+      <StatusBar barStyle={'dark-content'} translucent backgroundColor="transparent"/>
       <HeaderOptions
         left={
           <BackButton icon='close' onPress={handleGoBack}/>

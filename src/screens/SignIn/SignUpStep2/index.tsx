@@ -83,7 +83,7 @@ export function SignUpStep2({route}: {route: SignUpStep2SignInStackRouteProp}) {
     <AvoidKeyboard>
       <Container>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <StatusBar barStyle={'dark-content'} />
+          <StatusBar barStyle={'dark-content'} translucent backgroundColor="transparent"/>
           <HeaderOptions
             left={<BackButton icon="back" onPress={handleGoBack} />}
             center={<Separator width={spacing.md} />}

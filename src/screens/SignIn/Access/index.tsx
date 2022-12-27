@@ -32,7 +32,7 @@ export function Access(){
 
 return (
    <Container source={splashImage}>
-    <StatusBar barStyle={'light-content'} />
+    <StatusBar barStyle={'light-content'}  translucent backgroundColor="transparent" />
     <Column>
       <IconRoundedVaccine>
         <IconVaccine icon='vaccine' size={80} />

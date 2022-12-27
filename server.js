@@ -11,7 +11,7 @@ createServer({
       firstName: 'Matheus',
       lastName: 'Pereira',
       email: 'matheus@teste.com',
-      password: '123123',
+      password: '123123123',
       token: 'eyDASDSADqd91jdas98jd9ahd8ahs8dha8sda@',
       avatar: 'https://avatars.githubusercontent.com/u/65426315?v=4'
     })
