@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:832996488811:android:a2a5e732c7d7e49e81632e",
         "android_client_info": {
-          "package_name": "com.awesometsproject"
+          "package_name": "com.catapulta.vacinadex"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "832996488811-k4b8svgtvnadusssk9sv7njj8dokq4h2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.awesometsproject",
+            "package_name": "com.catapulta.vacinadex",
             "certificate_hash": "75c8c18b11f1b8a0d056bda6d8e96ddc4b25dc8c"
           }
         },

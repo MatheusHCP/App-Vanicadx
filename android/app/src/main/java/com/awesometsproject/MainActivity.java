@@ -1,4 +1,4 @@
-package com.awesometsproject;
+package com.catapulta.vacinadex;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
