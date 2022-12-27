@@ -4,7 +4,7 @@ import { RequestCreateUserData } from "../../services/resource/user/types";
 
 interface RequestSignInData{
   email: string;
-  password: string;
+  password?: string;
 }
 
 export interface AuthContextProps{
@@ -12,8 +12,10 @@ export interface AuthContextProps{
   loading: boolean;
   user?: UserDTO;
   signIn: (data: RequestSignInData) => Promise<void>
+  signInApple: (userApple: string) => Promise<void>
   signUp: (data: RequestCreateUserData) => Promise<void>
   signOut: () => void;
+  checkifExistUser: (params: Partial<UserDTO>) => Promise<boolean>;
 
 }
 

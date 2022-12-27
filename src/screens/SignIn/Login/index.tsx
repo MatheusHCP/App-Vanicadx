@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar, Platform, ScrollView} from 'react-native';
+import {StatusBar, Platform, ScrollView, Alert} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import {Button} from '../../../components/Button';
 import {HeaderOptions} from '../../../components/HeaderOptions';
@@ -26,7 +26,7 @@ export function Login() {
    * Hooks
    */
 
-  const {loading, signIn} = useAuth();
+  const {loading, signIn, signInApple, checkifExistUser, signUp} = useAuth();
 
   /**
    * Forms
@@ -59,9 +59,26 @@ export function Login() {
   async function handleGoogleButton() {
     try {
       const {user} = await GoogleSignin.signIn();
-      console.log(user);
+
+      const hasUser = await checkifExistUser({
+        email: user.email
+      })
+      if(hasUser){
+        await signIn({
+          email: user.email
+        })
+      }
+      else{
+        await signUp({ // Verificação pra caso retorne null, vai ser incrementado um objeto vazio, caso tenha algo vai criar o objeto.
+          ...(user.photo?{avatar: user.photo} : {}),
+          ...(user.email?{email: user.email} : {}),
+          ...(user.givenName?{firstName: user.givenName} : {}),
+          ...(user.familyName?{lastName: user.familyName} : {})
+        })
+      }
     } catch (error) {
       console.error(error);
+      Alert.alert('Ops!', "Ocorreu um erro ao realizar o login.")
     }
   }
 

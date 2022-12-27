@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { UserDTO } from "../../@types/dtos/user";
 import { asyncUserKeys, AuthContextProps } from "./types";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { signInResource } from "../../services/resource/auth";
+import { checkIfExistUserResource, signInAppleResource, signInResource } from "../../services/resource/auth";
 import { RequestSignInData } from "../../services/resource/auth/types";
 import { Alert } from "react-native";
 import api from "../../services/api";
@@ -34,8 +34,8 @@ export const AuthProvider: React.FC = ({children}) => {
     try {
       setLoading(true)
       const response = await signInResource(data)
-      setUser(response.user)
-      saveUserToStorageAndConfigToken(response.user)
+      setUser(response[0])
+      saveUserToStorageAndConfigToken(response[0])
       setLoading(false)
       setIsSignedIn(true)
      
@@ -48,16 +48,55 @@ export const AuthProvider: React.FC = ({children}) => {
 
   }
 
+  const signInApple = async (userApple: string) => {
+    try {
+      setLoading(true)
+      const response = await signInAppleResource(userApple)
+      setUser(response[0])
+
+      await saveUserToStorageAndConfigToken(response[0])
+      setIsSignedIn(true)
+     
+    } catch (error) {
+      Alert.alert("Erro ao efetuar login", "Não foi possível realizar o login, tente novamente.")
+    }
+    finally{
+      setLoading(false)
+    }
+
+  }
+
+
   async function signUp(data: RequestCreateUserData){
     try {
       setLoading(true)
       const response = await createUserResource(data)
-      setUser(response.user)
-      setLoading(false)
+      setUser(response)
       setIsSignedIn(true)
-      await saveUserToStorageAndConfigToken(response.user)
+      await saveUserToStorageAndConfigToken(response)
     } catch (error) {
       Alert.alert("Erro ao efetuar cadastro", "tente novamente.")
+    }
+    finally{
+      setLoading(false)
+    }
+  }
+
+
+
+  async function checkifExistUser(data: Partial<UserDTO>){
+    try {
+      setLoading(true)
+      const response = await checkIfExistUserResource(data)
+
+      if(response.length > 0) {
+        return true
+      }
+      else 
+        return false
+
+    } catch (error) {
+      return false
     }
     finally{
       setLoading(false)
@@ -89,7 +128,7 @@ export const AuthProvider: React.FC = ({children}) => {
   
 
   return(
-    <AuthContext.Provider value={{user, loading, isSignedIn, signIn, signUp, signOut}}>
+    <AuthContext.Provider value={{user, loading, isSignedIn, signInApple, checkifExistUser, signIn, signUp, signOut}}>
       {!rehydrateLoading && children}
     </AuthContext.Provider>
   )
