@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 
 import {
@@ -10,7 +10,7 @@ export function VaccineOnMaps(){
 return (
    <Container>
      <MapView
-       provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+       provider={Platform.OS == 'android' ? PROVIDER_GOOGLE : undefined} // remove if not using Google Maps
        style={styles.map}
        region={{
          latitude: 37.78825,
