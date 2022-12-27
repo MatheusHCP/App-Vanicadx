@@ -8,6 +8,7 @@ declare global {
     VaccineDetail: {
       vaccine: any;
     };
+    VaccineOnMaps: undefined;
   };
 
   /**

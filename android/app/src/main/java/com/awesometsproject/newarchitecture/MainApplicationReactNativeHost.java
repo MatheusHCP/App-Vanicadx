@@ -1,4 +1,4 @@
-package com.awesometsproject.newarchitecture;
+package com.catapulta.vacinadex.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.awesometsproject.BuildConfig;
-import com.awesometsproject.newarchitecture.components.MainComponentsRegistry;
-import com.awesometsproject.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.catapulta.vacinadex.BuildConfig;
+import com.catapulta.vacinadex.newarchitecture.components.MainComponentsRegistry;
+import com.catapulta.vacinadex.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

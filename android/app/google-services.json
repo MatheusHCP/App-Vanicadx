@@ -41,6 +41,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832996488811:android:8dcf285189e6707381632e",
+        "android_client_info": {
+          "package_name": "com.catapulta.vacinadex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832996488811-6783hjpj49cmmbmh1qhagn6u2h5rn5o8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.catapulta.vacinadex",
+            "certificate_hash": "75c8c18b11f1b8a0d056bda6d8e96ddc4b25dc8c"
+          }
+        },
+        {
+          "client_id": "832996488811-tvhcbmh451okt3obg3jf2e9hf6v0cunq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvOhJqg40AnhI5MkeglmjZt8ZfCDXh5Z0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832996488811-tvhcbmh451okt3obg3jf2e9hf6v0cunq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
