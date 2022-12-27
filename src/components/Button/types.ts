@@ -11,5 +11,7 @@ export interface ButtonProps extends TouchableOpacityProps {
   typography?: TypographyTypes
   mode?: Mode;
   loading?: boolean;
+  paddingHorizontal?: number;
+  paddingVertical?: number;
 
 } 

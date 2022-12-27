@@ -2,6 +2,7 @@ import { format, isBefore } from 'date-fns';
 import React, { useMemo } from 'react';
 import {Pressable, View} from 'react-native';
 import { useTheme } from 'styled-components/native';
+import useConvertDose from '../../hooks/useConvertDose';
 import {Icon} from '../Icon';
 import {Separator} from '../Separator';
 import {Text} from '../Text';
@@ -12,6 +13,7 @@ import { VaccineCardProps } from './types';
 export function VaccineCard({date, shot, title, onPress}: VaccineCardProps) {
 
   const {colors} = useTheme();
+  const dose = useConvertDose({shot})
 
   const isBeforeToday = useMemo(() => {
     return isBefore(new Date(date), new Date())
@@ -21,25 +23,7 @@ export function VaccineCard({date, shot, title, onPress}: VaccineCardProps) {
     return format(new Date(date), 'dd/MM/yy')
   },[date])
 
-  const dose = useMemo(() => {
-    switch (shot) {
-      case 'first-dose':
-        return{
-          color: colors.primary.main,
-          title: '1ª dose'
-        }    
-      case 'second-dose':
-        return{
-          color: colors.orange.main,
-          title: '2ª dose'
-        }    
-      default:
-        return{
-          color: colors.secondary.main,
-          title: 'Dose única'
-        }    
-    }
-  }, [shot])
+
 
 
   return (

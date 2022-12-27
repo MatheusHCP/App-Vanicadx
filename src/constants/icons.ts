@@ -19,6 +19,8 @@ import lapis from '../assets/icons/lapis/lapis.png';
 import qrcode from '../assets/icons/qrcode/qrcode.png';
 import radioButton from '../assets/icons/radioButton/Vector.png';
 import radioButtonActive from '../assets/icons/radioButtonActive/Vector.png';
+import search from '../assets/icons/search/Vector.png';
+import dose from '../assets/icons/dose/Vector.png';
 
 export type NameIconTypes = 
  | 'doctor'
@@ -42,6 +44,8 @@ export type NameIconTypes =
  | 'lapis'
  | 'radioButton'
  | 'radioButtonActive'
+ | 'search'
+ | 'dose'
 
 export default {
   vaccine,
@@ -64,5 +68,7 @@ export default {
   lapis,
   qrcode,
   radioButton,
-  radioButtonActive
+  radioButtonActive,
+  search,
+  dose
 };

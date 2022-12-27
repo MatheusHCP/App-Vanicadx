@@ -18,13 +18,14 @@ export function Home() {
   const {signOut} = useAuth();
 
   const handleAddVaccineScreen = () => navigate('addVaccine') 
+  const handleMyVaccine = () => navigate('MyVaccine') 
 
   return (
     <Container>
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
       <Header />
       <ScrollViewItems horizontal>
-        <SmallCard icon="vaccine" title={`Minhas\nVacinas`} />
+        <SmallCard onPress={handleMyVaccine} icon="vaccine" title={`Minhas\nVacinas`} />
         <Separator width={15} />
         <SmallCard  onPress={handleAddVaccineScreen} icon="plus" title={`Adicionar\nvacinas`} />
         <Separator width={15} />

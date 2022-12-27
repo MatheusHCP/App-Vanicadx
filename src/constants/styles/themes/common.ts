@@ -39,8 +39,8 @@ export const typographyCommon : Typography = {
     fontFamily: Fonts.openSansRegular
   },
   subTitle2: {
-    fontSize: 14,
-    fontFamily: Fonts.openSansLight
+    fontSize: 18,
+    fontFamily: Fonts.montSerratBold
   },
   body1: {
     fontSize: 14,
