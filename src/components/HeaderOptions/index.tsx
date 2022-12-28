@@ -14,7 +14,7 @@ export function HeaderOptions({
 
   const {spacing} = useTheme()
   const heightSeparatorStatusBar = useMemo(() => {
-    return StatusBar.currentHeight ? StatusBar.currentHeight + spacing.md : spacing.md
+    return StatusBar.currentHeight ? spacing.lg : spacing.md
   }, [spacing])
 
   return (

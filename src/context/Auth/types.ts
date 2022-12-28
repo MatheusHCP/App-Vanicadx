@@ -16,7 +16,6 @@ export interface AuthContextProps{
   signUp: (data: RequestCreateUserData) => Promise<void>
   signOut: () => void;
   checkifExistUser: (params: Partial<UserDTO>) => Promise<boolean>;
-
 }
 
 

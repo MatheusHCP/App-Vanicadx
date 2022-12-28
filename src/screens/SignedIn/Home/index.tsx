@@ -25,7 +25,7 @@ export function Home() {
     <Container>
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
       <Header />
-      <ScrollViewItems horizontal>
+      <ScrollViewItems horizontal showsHorizontalScrollIndicator={false}>
         <SmallCard onPress={handleMyVaccine} icon="vaccine" title={`Minhas\nVacinas`} />
         <Separator width={15} />
         <SmallCard  onPress={handleAddVaccineScreen} icon="plus" title={`Adicionar\nvacinas`} />

@@ -34,11 +34,11 @@ export function MyVaccine() {
 
   return (
     <Container>
-      <StatusBar
+      {/* <StatusBar
         barStyle="dark-content"
         translucent
         backgroundColor="transparent"
-      />
+      /> */}
       <HeaderOptions
         left={
           <Pressable onPress={goBack}>
