@@ -22,6 +22,7 @@ import radioButtonActive from '../assets/icons/radioButtonActive/Vector.png';
 import search from '../assets/icons/search/Vector.png';
 import dose from '../assets/icons/dose/Vector.png';
 import marker from '../assets/icons/marker/Vector.png';
+import emptybox from '../assets/icons/emptyBox/Vector.png';
 
 export type NameIconTypes = 
  | 'doctor'
@@ -48,6 +49,7 @@ export type NameIconTypes =
  | 'search'
  | 'dose'
  | 'marker'
+ | 'emptybox'
 
 export default {
   vaccine,
@@ -73,5 +75,6 @@ export default {
   radioButtonActive,
   search,
   dose,
-  marker
+  marker,
+  emptybox
 };

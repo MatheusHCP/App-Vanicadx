@@ -7,7 +7,7 @@ import {Icon} from '../Icon';
 import {Separator} from '../Separator';
 import {Text} from '../Text';
 
-import styles, {BadgeLeft, Chip, ChipWrap, Container, VaccineDate} from './styles';
+import styles, {BadgeLeft, Chip, ChipWrap, Container, TitleContainer, VaccineDate} from './styles';
 import { VaccineCardProps } from './types';
 
 export function VaccineCard({date, shot, title, onPress}: VaccineCardProps) {
@@ -30,15 +30,15 @@ export function VaccineCard({date, shot, title, onPress}: VaccineCardProps) {
     <Pressable style={styles.shadow} onPress={onPress}>
       <Container>
         <BadgeLeft color={isBeforeToday ? colors.lightGreen.main : colors.orange.main} />
-        <View>
-          <Text typography="body2">{title}</Text>
+        <TitleContainer>
+          <Text typography="body2" numberOfLines={1}>{title}</Text>
           <Separator height={18} />
           <ChipWrap>
             <Chip color={dose.color}>
               <Text color='background'>{dose.title}</Text>
             </Chip>
           </ChipWrap>
-        </View>
+        </TitleContainer>
         <VaccineDate>
           <Icon icon="calendar" size={20} />
           <Separator width={12} />

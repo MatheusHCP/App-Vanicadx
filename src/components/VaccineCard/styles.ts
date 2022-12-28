@@ -50,6 +50,10 @@ export const VaccineDate = styled.View`
   align-items: center;
 `;
 
+export const TitleContainer = styled.View`
+  max-width: 70%;
+`;
+
 const styles = StyleSheet.create({
   shadow: {
     shadowColor: '#000',
