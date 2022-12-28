@@ -1,4 +1,5 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
+import { format } from 'date-fns';
 import React, {useMemo} from 'react';
 import {Pressable, ScrollView} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
@@ -42,13 +43,13 @@ export function VaccineDetail() {
       />
         <Separator height={spacing.md} />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text typography="h7">Detalhe da vacina</Text>
+        <Text typography="h7">Detalhes da vacina</Text>
         <Separator height={spacing.sm} />
         <Content>
           <RowVaccine>
             <LogoVaccine resizeMode='contain' source={{uri: randomImage}} />
             <Separator width={spacing.md} />
-            <Text typography='subTitle2'>{vaccine.name}</Text>
+            <Text typography='subTitle2'>{vaccine.brand}</Text>
           </RowVaccine>
           <RowTextDetail>
             <Icon icon='vaccine' activeColor={colors.primary.main} size={24} />
@@ -56,7 +57,7 @@ export function VaccineDetail() {
             <Text typography='subTitle2' color="primary">Vacina</Text>
           </RowTextDetail>
           <RowTextDetail>
-            <Text typography='caption'>HPV - Papilomavírus Humano</Text>
+            <Text typography='caption'>{vaccine.name}</Text>
           </RowTextDetail>
           <RowTextDetail>
             <Icon icon='calendar' activeColor={colors.primary.main} size={24} />
@@ -64,7 +65,7 @@ export function VaccineDetail() {
             <Text typography='subTitle2' color="primary">Data da aplicação</Text>
           </RowTextDetail>
           <RowTextDetail>
-            <Text typography='caption'>25/10/22</Text>
+            <Text typography='caption'>{format(new Date(vaccine.applicationDate), 'dd/MM/yyyy')}</Text>
           </RowTextDetail>
           <RowTextDetail>
             <Icon icon='location' activeColor={colors.primary.main} size={24} />
@@ -72,7 +73,7 @@ export function VaccineDetail() {
             <Text typography='subTitle2' color="primary">Local de aplicação</Text>
           </RowTextDetail>
           <RowTextDetail>
-            <Text typography='caption'>Unidade de saúde de familia Campos do Iguaçu - Foz do Iguaçu, PR</Text>
+            <Text typography='caption'>{vaccine.place}</Text>
           </RowTextDetail>
           <RowTextDetail>
             <Icon icon='dose' activeColor={colors.primary.main} size={24} />
@@ -86,7 +87,7 @@ export function VaccineDetail() {
         <RowTextDetail>
           <Center>
             <QRCode
-              value='123123132321'
+              value={vaccine.barCode}
             />
           </Center>
         </RowTextDetail>

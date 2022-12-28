@@ -9,5 +9,6 @@ export interface VaccineDTO{
   nextApplicationDate: string;
   dose: shot;
   barCode: string;
+  place: string;
   createdAt: string
 }
