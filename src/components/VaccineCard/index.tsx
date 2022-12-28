@@ -6,9 +6,10 @@ import { useTheme } from 'styled-components/native';
 import useConvertDose from '../../hooks/useConvertDose';
 import {Icon} from '../Icon';
 import {Separator} from '../Separator';
+import Shadow from '../Shadow';
 import {Text} from '../Text';
 
-import styles, {BadgeLeft, Chip, ChipWrap, Container, TitleContainer, VaccineDate} from './styles';
+import {BadgeLeft, Chip, ChipWrap, Container, TitleContainer, VaccineDate} from './styles';
 import { VaccineCardProps } from './types';
 
 export function VaccineCard({vaccine}: VaccineCardProps) {
@@ -29,7 +30,7 @@ export function VaccineCard({vaccine}: VaccineCardProps) {
 
 
   return (
-    <Pressable style={styles.shadow} onPress={handleNavigateToVaccineDetail}>
+    <Shadow onPress={handleNavigateToVaccineDetail}>
       <Container>
         <BadgeLeft color={isBeforeToday ? colors.lightGreen.main : colors.orange.main} />
         <TitleContainer>
@@ -47,6 +48,6 @@ export function VaccineCard({vaccine}: VaccineCardProps) {
           <Text>{formattedDate}</Text>
         </VaccineDate>
       </Container>
-    </Pressable>
+    </Shadow>
   );
 }
