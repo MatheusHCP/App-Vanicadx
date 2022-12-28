@@ -37,6 +37,7 @@
     "react-native-screens": "^3.18.2",
     "react-native-svg": "^13.6.0",
     "styled-components": "^5.3.6",
+    "use-debounce": "^9.0.2",
     "yup": "^0.32.11"
   },
   "resolutions": {

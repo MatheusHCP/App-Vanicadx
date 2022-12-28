@@ -1,27 +1,35 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
-import {FlatList, Pressable, StatusBar} from 'react-native';
+import {isAfter} from 'date-fns';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import {FlatList, Pressable, Alert, StatusBar} from 'react-native';
 import {useTheme} from 'styled-components/native';
+import {useDebouncedCallback} from 'use-debounce';
+import {VaccineDTO} from '../../../@types/dtos/vaccine';
 import {Button} from '../../../components/Button';
+import { Empty } from '../../../components/Empty';
 import {HeaderOptions} from '../../../components/HeaderOptions';
 import {Icon} from '../../../components/Icon';
 import Input from '../../../components/Input';
 import {Separator} from '../../../components/Separator';
 import {Text} from '../../../components/Text';
 import {VaccineCard} from '../../../components/VaccineCard';
-
+import useAuth from '../../../hooks/useAuth';
+import {getVaccines} from '../../../services/resource/vaccine';
 import {Container, RowFilterVaccine} from './styles';
 import {FilterVaccine} from './types';
 
 export function MyVaccine() {
   const {goBack, navigate} = useNavigation<SignedInStackNavigatorProps>();
   const {spacing} = useTheme();
+  const {user} = useAuth();
 
   /**
    * States
    */
   const [toggleFilter, setToggleFilter] = useState<FilterVaccine>('all');
   const [searchInput, setSearchInput] = useState('');
+  const [vaccines, setVaccines] = useState<VaccineDTO[]>([]);
+  const [loading, setLoading] = useState(true);
 
   /**
    * Callback
@@ -30,15 +38,73 @@ export function MyVaccine() {
     setToggleFilter(old => (old == 'all' ? 'next' : 'all')); // Como é um toggle de filtro e só possui dois estados. feitos direto no set do filter
   };
 
-  const handleNavigateToVaccineDetail = vaccine => navigate('VaccineDetail', {vaccine})
+  const handleFetchVaccines = useCallback(async () => {
+    if (user) {
+      try {
+        setLoading(true);
+        const response = await getVaccines({userID: user.id});
+        setVaccines(response); // Filtrando somente as próximas vacinas, datas superiores a hoje.
+      } catch (error) {
+        Alert.alert('Ops!', 'Não foi possível carregar as vacinas.');
+      } finally {
+        setLoading(false);
+      }
+    }
+  }, [user]);
+
+  const handleSearchVaccines = useCallback(
+    async (search: string) => {
+      if (user) {
+        try {
+          setLoading(true);
+          const response = await getVaccines({search});
+          setVaccines(response); // Filtrando somente as próximas vacinas, datas superiores a hoje.
+        } catch (error) {
+          Alert.alert('Ops!', 'Não foi possível carregar as vacinas.');
+        } finally {
+          setLoading(false);
+        }
+      }
+    },
+    [user],
+  );
+
+  const debounceHandleSearchVaccines = useDebouncedCallback(
+    handleSearchVaccines
+  );
+
+  useEffect(() => {
+    if(searchInput.length == 0){
+      handleFetchVaccines();
+    }
+  }, [handleFetchVaccines, searchInput]);
+
+  useEffect(() => {
+    if (searchInput.length > 0) {
+      debounceHandleSearchVaccines(searchInput);
+    }
+  }, [searchInput, debounceHandleSearchVaccines]);
+
+  /**
+   * Memos
+   */
+
+  const filteredVaccines = useMemo(() => {
+    if (toggleFilter == 'all') {
+      return vaccines;
+    }
+    return vaccines.filter(e =>
+      isAfter(new Date(e.nextApplicationDate), new Date()),
+    );
+  }, [vaccines, toggleFilter]);
 
   return (
     <Container>
-      {/* <StatusBar
+      <StatusBar
         barStyle="dark-content"
         translucent
         backgroundColor="transparent"
-      /> */}
+      />
       <HeaderOptions
         left={
           <Pressable onPress={goBack}>
@@ -54,7 +120,6 @@ export function MyVaccine() {
         iconPosition="left"
         iconColor="lightGreen"
         placeholder="Busca de vacina"
-        // TODO: Implement Debounce ao efetuar a busca esperar X segundos para efetuar consulta na API
         onChangeText={setSearchInput}
         value={searchInput}
       />
@@ -78,25 +143,19 @@ export function MyVaccine() {
       </RowFilterVaccine>
       <Separator height={spacing.md} />
       <FlatList
-        data={[1, 2, 3, 4, 5]}
-        keyExtractor={item => `${item}`} // Passando dessa forma pois o keyExtractor ele pede uma string para tornar o item dessa lista unico.
+        data={filteredVaccines}
+        keyExtractor={item => `${item.id}`} // Passando dessa forma pois o keyExtractor ele pede uma string para tornar o item dessa lista unico.
         ItemSeparatorComponent={() => <Separator height={15} />}
         ListFooterComponent={() => <Separator height={15} />}
         renderItem={({item}) => (
           <VaccineCard
-            //FIXME: Handle to open detail screen
-            key={item}
-            onPress={() => {
-              handleNavigateToVaccineDetail(
-               {shot: 'second-dose',
-                title: 'Johnson'
-              }
-              )
-            }}
-            date={item % 2 === 0 ? new Date(2022, 12, 27).toISOString() : new Date(2022, 11, 27).toISOString() }
-            shot={item % 2 === 0 ? 'second-dose' : 'first-dose'}
-            title={item % 2 === 0 ? 'Johnson' : 'Astrazeneca'}
+            //FIXME: Shimmer Effect
+            vaccine={item}
           />
+        )}
+        ListEmptyComponent={() => (
+            //FIXME: Shimmer Effect
+          <Empty title="Não foi possível encontrar" />
         )}
       />
     </Container>

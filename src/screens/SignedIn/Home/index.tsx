@@ -73,9 +73,7 @@ export function Home() {
         renderItem={({item}) => (
           <Content>
             <VaccineCard
-              title={item.name}
-              shot={item.dose}
-              date={item.nextApplicationDate}
+              vaccine={item}
             />
           </Content>
         )}

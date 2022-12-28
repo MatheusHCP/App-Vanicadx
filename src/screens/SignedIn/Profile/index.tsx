@@ -10,7 +10,7 @@ import {Avatar, CardOption, Container, Divider, Row} from './styles';
 
 export function Profile() {
   const {spacing} = useTheme();
-  const {user} = useAuth();
+  const {user, signOut} = useAuth();
 
   return (
     <Container>
@@ -34,7 +34,7 @@ export function Profile() {
             <Divider/>
             <Option icon='notification' title='Suporte' />
             <Divider/>
-            <Option icon='logout' title='Sair' />
+            <Option onPress={signOut} icon='logout' title='Sair' />
           </CardOption>
         </View>
 

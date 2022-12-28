@@ -1,3 +1,4 @@
+import { NavigationHelpersContext, useNavigation } from '@react-navigation/native';
 import { format, isBefore } from 'date-fns';
 import React, { useMemo } from 'react';
 import {Pressable, View} from 'react-native';
@@ -10,28 +11,29 @@ import {Text} from '../Text';
 import styles, {BadgeLeft, Chip, ChipWrap, Container, TitleContainer, VaccineDate} from './styles';
 import { VaccineCardProps } from './types';
 
-export function VaccineCard({date, shot, title, onPress}: VaccineCardProps) {
+export function VaccineCard({vaccine}: VaccineCardProps) {
 
   const {colors} = useTheme();
-  const dose = useConvertDose({shot})
+  const {navigate} = useNavigation<SignedInStackNavigatorProps>();
+  const dose = useConvertDose({shot: vaccine.dose})
 
   const isBeforeToday = useMemo(() => {
-    return isBefore(new Date(date), new Date())
-  }, [date])
+    return isBefore(new Date(vaccine.nextApplicationDate), new Date())
+  }, [vaccine])
 
   const formattedDate = useMemo(() => {
-    return format(new Date(date), 'dd/MM/yy')
-  },[date])
+    return format(new Date(vaccine.nextApplicationDate), 'dd/MM/yy')
+  },[vaccine])
 
-
+  const handleNavigateToVaccineDetail = () => navigate('VaccineDetail', {vaccine})
 
 
   return (
-    <Pressable style={styles.shadow} onPress={onPress}>
+    <Pressable style={styles.shadow} onPress={handleNavigateToVaccineDetail}>
       <Container>
         <BadgeLeft color={isBeforeToday ? colors.lightGreen.main : colors.orange.main} />
         <TitleContainer>
-          <Text typography="body2" numberOfLines={1}>{title}</Text>
+          <Text typography="body2" numberOfLines={1}>{vaccine.name}</Text>
           <Separator height={18} />
           <ChipWrap>
             <Chip color={dose.color}>

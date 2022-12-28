@@ -22,7 +22,7 @@ export function VaccineDetail() {
    * Callbacks
    */
   
-  const dose = useConvertDose({shot: vaccine.shot})
+  const dose = useConvertDose({shot: vaccine.dose})
 
   /**
    * useMemos
@@ -48,7 +48,7 @@ export function VaccineDetail() {
           <RowVaccine>
             <LogoVaccine resizeMode='contain' source={{uri: randomImage}} />
             <Separator width={spacing.md} />
-            <Text typography='subTitle2'>{vaccine.title}</Text>
+            <Text typography='subTitle2'>{vaccine.name}</Text>
           </RowVaccine>
           <RowTextDetail>
             <Icon icon='vaccine' activeColor={colors.primary.main} size={24} />
