@@ -1,8 +1,10 @@
 import {yupResolver} from '@hookform/resolvers/yup';
-import {useNavigation} from '@react-navigation/native';
+import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import {StackActions, useNavigation} from '@react-navigation/native';
+import { format } from 'date-fns';
 import React, {useState} from 'react';
 import {Controller, useForm} from 'react-hook-form';
-import {Pressable, StatusBar} from 'react-native';
+import {Alert, Pressable, StatusBar} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import {AvoidKeyboard} from '../../../components/AvoidKeyboard';
 import {Button} from '../../../components/Button';
@@ -11,18 +13,23 @@ import {Icon} from '../../../components/Icon';
 import Input from '../../../components/Input';
 import {Separator} from '../../../components/Separator';
 import {Text} from '../../../components/Text';
+import useAuth from '../../../hooks/useAuth';
+import { createVaccine } from '../../../services/resource/vaccine';
 import {Select} from './localComponents/Select';
 
 import {Container, ContainerSelect, Content, Scroll} from './styles';
-import {HasSecondShot, HasSecondShotEnum} from './types';
+import {Fields, HasSecondShot, HasSecondShotEnum} from './types';
 import {schemaAddVaccineManually} from './validations';
 
 export function AddVaccineManually() {
-  const {goBack} = useNavigation();
-  const {spacing} = useTheme();
+  const {goBack, dispatch} = useNavigation();
+  const {spacing, colors} = useTheme();
+  const {user} = useAuth();
+
   const [hasSecondShot, setHasSecondShot] = useState<HasSecondShot>(
     HasSecondShotEnum.YES,
   );
+  const [loading, setLoading] = useState(false)
 
   /**
    * Forms
@@ -39,13 +46,62 @@ export function AddVaccineManually() {
     defaultValues: {
       name: '',
       brand: '',
-      applicationDate: '',
+      applicationDate: new Date().toISOString(),
       applicationLocation: '',
       nextApplicationDate: '',
     },
   });
 
-  const onSubmit = (dataForm: any) => console.log(dataForm);
+  /**
+   * Callbacks
+   */
+
+  const handleChangeDateField = (field: Fields, date: number) => {
+    setValue(field, new Date(date).toISOString())
+    if(field == 'nextApplicationDate'){
+      setFocus('applicationLocation')
+    }
+  }
+
+  const handleDatePickerAndroid = (field: Fields) => {
+    DateTimePickerAndroid.open({
+      value: new Date(),
+      mode: 'date',
+      is24Hour: true,
+      onChange: e => {
+        if(e.nativeEvent.timestamp){
+          handleChangeDateField(field, e.nativeEvent.timestamp)
+        }
+      }
+    })
+  }
+
+  const onSubmit = async ({name, brand, applicationLocation, applicationDate, nextApplicationDate}) => {
+    if(!user?.id){
+      return;
+    }
+    console.log({name, brand, applicationLocation, applicationDate, nextApplicationDate})
+    try {
+      setLoading(true);
+      const dose = hasSecondShot == HasSecondShotEnum.YES ? 'second-dose' : 'single-dose'
+      await createVaccine({
+        dose,
+        applicationDate,
+        brand,
+        name,
+        place: applicationLocation,
+        userID: user.id,
+        ... (hasSecondShot == HasSecondShotEnum.YES && nextApplicationDate?{nextApplicationDate} : {nextApplicationDate: applicationDate})
+      })
+      
+      dispatch(StackActions.popToTop());
+    } catch (error) {
+      Alert.alert('Ops', 'Não foi possível salvar a vacina, tente novamente.')
+    }
+    finally{
+      setLoading(false);
+    }
+  };
 
   return (
     <AvoidKeyboard>
@@ -81,6 +137,7 @@ export function AddVaccineManually() {
                 />
               )}
             />
+            <Separator height={15}/>
             <Controller
               control={control}
               name="brand"
@@ -94,29 +151,34 @@ export function AddVaccineManually() {
                   onFocus={() => setFocus(name)}
                   onBlur={onBlur}
                   returnKeyType="next"
-                  onSubmitEditing={() => setFocus('applicationDate')}
+                  onSubmitEditing={() => handleDatePickerAndroid('applicationDate')}
                   onChangeText={text => setValue(name, text)}
                 />
               )}
             />
+            <Separator height={15}/>
             <Controller
               control={control}
               name="applicationDate"
               render={({field: {name, onBlur, onChange, ref, value}}) => (
-                <Input
-                  ref={ref}
-                  value={value}
-                  onChange={onChange}
-                  label="Data da aplicação"
-                  error={errors[name]?.message}
-                  onFocus={() => setFocus(name)}
-                  onBlur={onBlur}
-                  returnKeyType="next"
-                  onSubmitEditing={() => setFocus('applicationLocation')}
-                  onChangeText={text => setValue(name, text)}
-                />
+                <Pressable onPress={() => handleDatePickerAndroid('applicationDate')}>
+                  <Input
+                    ref={ref}
+                    value={value ? format(new Date(value), 'dd/MM/yyyy') : ''}
+                    onChange={onChange}
+                    label="Data da aplicação"
+                    error={errors[name]?.message}
+                    onFocus={() => setFocus(name)}
+                    editable={false}
+                    onBlur={onBlur}
+                    returnKeyType="next"
+                    onSubmitEditing={() => setFocus('applicationLocation')}
+                    onChangeText={text => setValue(name, text)}
+                  />
+                </Pressable>
               )}
             />
+            <Separator height={15}/>
             <Controller
               control={control}
               name="applicationLocation"
@@ -161,23 +223,26 @@ export function AddVaccineManually() {
                 control={control}
                 name="nextApplicationDate"
                 render={({field: {name, onBlur, onChange, ref, value}}) => (
-                  <Input
-                    ref={ref}
-                    value={value}
-                    onChange={onChange}
-                    label="Data da próxima aplicação?"
-                    error={errors[name]?.message}
-                    onFocus={() => setFocus(name)}
-                    onBlur={onBlur}
-                    returnKeyType="done"
-                    onSubmitEditing={handleSubmit(onSubmit)}
-                    onChangeText={text => setValue(name, text)}
-                  />
+                  <Pressable onPress={() => handleDatePickerAndroid('nextApplicationDate')}>
+                    <Input
+                      ref={ref}
+                      value={value ? format(new Date(value), 'dd/MM/yyyy') : ''}
+                      onChange={onChange}
+                      label="Data da próxima aplicação?"
+                      error={errors[name]?.message}
+                      onFocus={() => setFocus(name)}
+                      editable={false}
+                      onBlur={onBlur}
+                      returnKeyType="done"
+                      onSubmitEditing={handleSubmit(onSubmit)}
+                      onChangeText={text => setValue(name, text)}
+                    />
+                  </Pressable>
                 )}
               />
             )}
             <Separator height={spacing.md} />
-            <Button onPress={handleSubmit(onSubmit)}>Salvar</Button>
+            <Button onPress={handleSubmit(onSubmit)} loading={loading}>Salvar</Button>
             <Separator height={spacing.lg} />
           </Content>
         </Scroll>

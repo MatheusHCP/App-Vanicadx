@@ -7,3 +7,8 @@ export async function getVaccines(params: Partial<GetVaccinesRequest>) : Promise
   const {data} = await api.get(`/vaccines`, {params}); // Desconstroi o retorno do axios pra data que já é o resultado do VaccineDTO;
   return data
 } 
+
+export async function createVaccine(body?: Partial<VaccineDTO>) : Promise<Array<VaccineDTO>>{
+  const {data} = await api.post(`/vaccines`, body); // Desconstroi o retorno do axios pra data que já é o resultado do VaccineDTO;
+  return data
+} 
