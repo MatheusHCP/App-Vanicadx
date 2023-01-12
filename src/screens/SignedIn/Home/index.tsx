@@ -14,6 +14,7 @@ import {VaccineDTO} from '../../../@types/dtos/vaccine';
 import {getVaccines} from '../../../services/resource/vaccine';
 import {isAfter} from 'date-fns';
 import {Empty} from '../../../components/Empty';
+import VaccineCardShimmer from '../../../components/VaccineCard/localComponents/VaccineCardShimmer';
 
 export function Home() {
   const {navigate} = useNavigation<SignedInStackNavigatorProps>();
@@ -78,9 +79,23 @@ export function Home() {
           </Content>
         )}
         ItemSeparatorComponent={() => <Separator height={15} />}
-        ListEmptyComponent={() => (
-          <Empty title="Você não possui próximas vacinas" />
-        )}
+        ListEmptyComponent={() => {
+          if(loading){
+            return (
+              <Content>
+                <VaccineCardShimmer/>
+                <Separator height={15}/>
+                <VaccineCardShimmer/>
+                <Separator height={15}/>
+                <VaccineCardShimmer/>
+                <Separator height={15}/>
+              </Content>
+            )
+          }
+          return (
+            <Empty title="Você não possui próximas vacinas" />
+          )
+        }}
         ListHeaderComponent={() => {
           return (
             <>
