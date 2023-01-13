@@ -6,6 +6,6 @@
 
     /* Completeness */
     "skipLibCheck": true,
-    "types": ["styled-components-react-native"]                                 /* Skip type checking all .d.ts files. */
+    "types": ["styled-components-react-native", "@types/jest"]                                 /* Skip type checking all .d.ts files. */
   },
 }

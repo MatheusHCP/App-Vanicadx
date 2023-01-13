@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  height={15}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "transparent",
+        "height": 15,
+        "maxHeight": 15,
+        "minHeight": 15,
+      },
+    ]
+  }
+  testID="separator"
+/>
+`;
