@@ -2,6 +2,7 @@ import { VaccineDTO } from "../../@types/dtos/vaccine";
 
 export interface VaccineCardProps{
   vaccine: VaccineDTO;
+  index?: number;
 }
 
 

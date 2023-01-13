@@ -71,10 +71,11 @@ export function Home() {
           refreshing={loading}
           onRefresh={handleFetchVaccines}
         />}
-        renderItem={({item}) => (
+        renderItem={({item, index}) => (
           <Content>
             <VaccineCard
               vaccine={item}
+              index={index}
             />
           </Content>
         )}

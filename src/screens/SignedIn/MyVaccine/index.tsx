@@ -123,7 +123,7 @@ export function MyVaccine() {
         onChangeText={setSearchInput}
         value={searchInput}
       />
-      <Separator height={spacing.ty} />
+      <Separator height={spacing.sm} />
       <RowFilterVaccine>
         <Button
           mode={toggleFilter == 'all' ? 'contained' : 'outlined'}
@@ -147,10 +147,11 @@ export function MyVaccine() {
         keyExtractor={item => `${item.id}`} // Passando dessa forma pois o keyExtractor ele pede uma string para tornar o item dessa lista unico.
         ItemSeparatorComponent={() => <Separator height={15} />}
         ListFooterComponent={() => <Separator height={15} />}
-        renderItem={({item}) => (
+        renderItem={({item, index}) => (
           <VaccineCard
             //FIXME: Shimmer Effect
             vaccine={item}
+            index={index}
           />
         )}
         ListEmptyComponent={() => (
