@@ -137,7 +137,7 @@ export function AddVaccineManually() {
                 />
               )}
             />
-            <Separator height={15}/>
+            <Separator height={spacing.sm}/>
             <Controller
               control={control}
               name="brand"
@@ -156,7 +156,7 @@ export function AddVaccineManually() {
                 />
               )}
             />
-            <Separator height={15}/>
+            <Separator height={spacing.sm}/>
             <Controller
               control={control}
               name="applicationDate"
@@ -178,7 +178,7 @@ export function AddVaccineManually() {
                 </Pressable>
               )}
             />
-            <Separator height={15}/>
+            <Separator height={spacing.sm}/>
             <Controller
               control={control}
               name="applicationLocation"
@@ -219,6 +219,8 @@ export function AddVaccineManually() {
               />
             </ContainerSelect>
             {hasSecondShot == HasSecondShotEnum.YES && (
+              <>
+              <Separator height={spacing.sm}/>
               <Controller
                 control={control}
                 name="nextApplicationDate"
@@ -240,6 +242,7 @@ export function AddVaccineManually() {
                   </Pressable>
                 )}
               />
+              </>
             )}
             <Separator height={spacing.md} />
             <Button onPress={handleSubmit(onSubmit)} loading={loading}>Salvar</Button>

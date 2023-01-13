@@ -1,11 +1,10 @@
-import {RouteProp} from '@react-navigation/native';
+import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import { VaccineDTO } from '../../dtos/vaccine';
 
 declare global {
   export type SignedInStackParamsList = {
-    BottomTabHome: undefined;
-    // FIXME: Create real interface to vaccine
+    BottomTabHome?: NavigatorScreenParams<BottomTabParamList>;
     VaccineDetail: {
       vaccine: VaccineDTO;
     };

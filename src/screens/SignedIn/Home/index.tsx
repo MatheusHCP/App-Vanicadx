@@ -15,6 +15,7 @@ import {getVaccines} from '../../../services/resource/vaccine';
 import {isAfter} from 'date-fns';
 import {Empty} from '../../../components/Empty';
 import VaccineCardShimmer from '../../../components/VaccineCard/localComponents/VaccineCardShimmer';
+import { spacing } from '../../../constants/styles/themes/common';
 
 export function Home() {
   const {navigate} = useNavigation<SignedInStackNavigatorProps>();
@@ -30,8 +31,18 @@ export function Home() {
    * Callbacks
    */
 
-  const handleAddVaccineScreen = () => navigate('addVaccine');
-  const handleMyVaccine = () => navigate('MyVaccine');
+  const handleAddVaccineScreen = () => navigate('BottomTabHome', {
+    screen: 'home',
+    params: {
+      screen: 'addVaccine'
+    }
+  });
+  const handleMyVaccine = () => navigate('BottomTabHome', {
+    screen: 'home',
+    params: {
+      screen: 'MyVaccine'
+    }
+  });
   const handleVaccineOnMaps = () => navigate('VaccineOnMaps');
 
   const handleFetchVaccines = useCallback(async () => {
@@ -109,18 +120,19 @@ export function Home() {
                   icon="vaccine"
                   title={`Minhas\nVacinas`}
                 />
-                <Separator width={15} />
+                <Separator width={spacing.md} />
                 <SmallCard
                   onPress={handleAddVaccineScreen}
                   icon="plus"
                   title={`Adicionar\nvacinas`}
                 />
-                <Separator width={15} />
+                <Separator width={spacing.md} />
                 <SmallCard
                   onPress={handleVaccineOnMaps}
                   icon="location"
                   title={`Procurar local\n de vacinação`}
                 />
+                <Separator width={spacing.md} />
               </ScrollViewItems>
               <Content>
                 <Text typography="h8">Próximas vacinas</Text>

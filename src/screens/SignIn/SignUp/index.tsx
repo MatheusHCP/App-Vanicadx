@@ -105,6 +105,7 @@ export function SignUp() {
           />
         )}
       />
+      <Separator height={spacing.sm} />
       <Controller
         control={control}
         name="lastName"
@@ -124,6 +125,7 @@ export function SignUp() {
           />
         )}
       />
+      <Separator height={spacing.sm} />
       <Controller
         control={control}
         name="email"
