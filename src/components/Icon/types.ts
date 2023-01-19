@@ -1,5 +1,5 @@
 import { ImageProps } from "react-native";
-import { ColorsType } from "styled-components";
+import { ColorsType } from 'styled-components/native';
 import { NameIconTypes } from "../../constants/icons";
 
 export interface IconOptionProps{

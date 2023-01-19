@@ -1,4 +1,4 @@
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme } from 'styled-components/native';
 import * as Colors from '../colors'
 import { borders, spacing, typographyCommon } from "./common";
 

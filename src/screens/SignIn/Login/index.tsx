@@ -149,6 +149,7 @@ export function Login() {
           <Button
             onPress={handleSubmit(onSubmit)}
             disabled={loading}
+            testID="button-login-email"
             loading={loading}>
             Login
           </Button>

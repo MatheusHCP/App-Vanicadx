@@ -1,4 +1,4 @@
-import { Border, Spacing, Typography } from "styled-components";
+import { Border, Spacing, Typography } from 'styled-components/native';
 import { Fonts } from "../fonts";
 
 export const typographyCommon : Typography = {

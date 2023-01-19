@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import useAppearence from './hooks/useAppearence';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components/native';
 import { Routes } from './navigation';
 import { AuthProvider } from './context/Auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';

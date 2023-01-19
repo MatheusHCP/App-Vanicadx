@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacityProps } from "react-native";
-import { ColorsType, TypographyTypes } from "styled-components";
+import { ColorsType, TypographyTypes } from 'styled-components/native';
 
 export type Mode = 'outlined' | 'contained'
 

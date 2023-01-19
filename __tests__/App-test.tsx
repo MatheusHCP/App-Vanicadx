@@ -11,7 +11,5 @@ import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
   const {toJSON} = renderer.create(<Separator height={15} />);
-  console.log(toJSON())
-
   expect(toJSON()).toMatchSnapshot();
 });

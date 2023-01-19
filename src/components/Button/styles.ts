@@ -1,4 +1,4 @@
-import { TypographyTypes } from 'styled-components';
+import { TypographyTypes } from 'styled-components/native';
 import styled, { css } from 'styled-components/native';
 import { Mode } from './types';
 

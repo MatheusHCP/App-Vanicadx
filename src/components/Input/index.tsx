@@ -1,6 +1,6 @@
 import React, {forwardRef, useCallback, useContext, useImperativeHandle, useMemo, useRef, useState} from 'react';
 import { TouchableOpacity } from 'react-native';
-import {ThemeContext} from 'styled-components';
+import {ThemeContext} from 'styled-components/native';
 import { Icon } from '../Icon';
 
 import {Border, Container, Error, IconContainer, InputInternal, Label} from './styles';
@@ -91,7 +91,7 @@ const Input : React.ForwardRefRenderFunction<InputValueRef, InputProps> = ({
         {iconPosition == 'right' && renderIcon()}
       </Border>
         {!! error && (
-          <Error color='error' typography='body1'>{error}</Error>
+          <Error testID='error-input' color='error' typography='body1'>{error}</Error>
         )}
     </Container>
   );

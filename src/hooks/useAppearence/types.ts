@@ -1,5 +1,5 @@
 import { ColorSchemeName } from "react-native";
-import { DefaultTheme } from "styled-components";
+import { DefaultTheme } from 'styled-components/native';
 
 export type ThemeType = 'light' | 'dark';
 

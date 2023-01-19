@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, PropsWithChildren, useEffect, useState } from "react";
 import { UserDTO } from "../../@types/dtos/user";
 import { asyncUserKeys, AuthContextProps } from "./types";
 import AsyncStorage from '@react-native-async-storage/async-storage';

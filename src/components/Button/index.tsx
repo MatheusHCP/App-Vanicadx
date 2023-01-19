@@ -1,5 +1,5 @@
 import React, {useContext, useMemo} from 'react';
-import {ThemeContext} from 'styled-components';
+import {ThemeContext} from 'styled-components/native';
 
 import {AbsoluteIcon, Container, Loading, Title} from './styles';
 import {ButtonProps} from './types';
