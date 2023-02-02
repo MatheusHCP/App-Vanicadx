@@ -55,7 +55,7 @@ buck-out/
 **/fastlane/Preview.html
 **/fastlane/screenshots
 **/fastlane/test_output
-
+**/android/play-store-credentials.json
 # Bundle artifact
 *.jsbundle
 
