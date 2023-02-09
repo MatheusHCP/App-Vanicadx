@@ -1,10 +1,10 @@
 import { NavigatorScreenParams } from "@react-navigation/native"
-import { HomeStackParamList } from "../SignIn/SignInStackNavigator"
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs'
+import { HomeStackParamsList } from "./HomeStackNavigator";
 
 declare global {
   export type BottomTabParamList = {
-    home: undefined;
+    home?: NavigatorScreenParams<HomeStackParamsList>;
     profile: undefined;
   }
   

@@ -1,6 +1,6 @@
-import 'styled-components'
+import 'styled-components/native'
 
-declare module 'styled-components'{
+declare module 'styled-components/native'{
 
   export interface Spacing{
     ty: number;
@@ -25,7 +25,18 @@ declare module 'styled-components'{
     onMain: string;
   }
 
-  export type ColorsType = 'primary' | 'secondary' | 'background' | 'error' | 'surface'
+  export type ColorsType =
+   | 'primary'
+   | 'secondary'
+   | 'background'
+   | 'error'
+   | 'surface'
+   | 'surface50'
+   | 'surface100'
+   | 'surface500'
+   | 'surface600'
+   | 'orange'
+   | 'lightGreen'
 
   export interface PaletteType{
     primary: ColorType;
@@ -33,6 +44,12 @@ declare module 'styled-components'{
     background: ColorType;
     error: ColorType;
     surface: ColorType;
+    surface50: ColorType;
+    surface100: ColorType;
+    surface500: ColorType;
+    surface600: ColorType;
+    orange: ColorType;
+    lightGreen: ColorType;
   }
 
   export interface TypographyProps{
@@ -47,6 +64,8 @@ declare module 'styled-components'{
     h4: TypographyProps;
     h5: TypographyProps;
     h6: TypographyProps;
+    h7: TypographyProps;
+    h8: TypographyProps;
     subTitle1: TypographyProps;
     subTitle2: TypographyProps;
     body1: TypographyProps;
@@ -63,6 +82,8 @@ declare module 'styled-components'{
     'h4'|
     'h5'|
     'h6'|
+    'h7'|
+    'h8'|
     'subTitle1'|
     'subTitle2'|
     'body1'|

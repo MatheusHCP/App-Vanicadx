@@ -6,6 +6,11 @@ export type SignInStackParamList = {
   Login: undefined
   onBoarding: undefined
   signUp: undefined
+  signUpStep2: {
+    email: string,
+    firstName: string,
+    lastName: string
+  }
 };
 
 /**
@@ -18,4 +23,4 @@ export type SignInStackNavigatorProp = NativeStackNavigationProp<SignInStackPara
  * useRoute types | Parametros que cada tela utiliza.
  */
 
-// export type StoriesSignInStackRouteProp = RouteProp<SignInStackParamList, 'access'>
+export type SignUpStep2SignInStackRouteProp = RouteProp<SignInStackParamList, 'signUpStep2'>

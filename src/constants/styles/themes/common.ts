@@ -1,4 +1,4 @@
-import { Border, Spacing, Typography } from "styled-components";
+import { Border, Spacing, Typography } from 'styled-components/native';
 import { Fonts } from "../fonts";
 
 export const typographyCommon : Typography = {
@@ -7,32 +7,40 @@ export const typographyCommon : Typography = {
     fontFamily: Fonts.openSansLight
   },
   h2: {
-    fontSize: 60,
-    fontFamily: Fonts.openSansLight
+    fontSize: 48,
+    fontFamily: Fonts.montSerratBold
   },
   h3: {
-    fontSize: 48,
-    fontFamily: Fonts.openSansRegular
-  },
-  h4: {
     fontSize: 32,
     fontFamily: Fonts.montSerratBold
   },
+  h4: {
+    fontSize: 32,
+    fontFamily: Fonts.montSerratSemiBold
+  },
   h5: {
+    fontSize: 24,
+    fontFamily: Fonts.montSerratBold
+  },
+  h6: {
+    fontSize: 24,
+    fontFamily: Fonts.montSerratRegular
+  },
+  h7: {
     fontSize: 24,
     fontFamily: Fonts.montSerratSemiBold
   },
-  h6: {
+  h8: {
     fontSize: 20,
-    fontFamily: Fonts.montSerratRegular
+    fontFamily: Fonts.montSerratSemiBold
   },
   subTitle1: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: Fonts.openSansRegular
   },
   subTitle2: {
-    fontSize: 14,
-    fontFamily: Fonts.openSansLight
+    fontSize: 18,
+    fontFamily: Fonts.montSerratBold
   },
   body1: {
     fontSize: 14,
@@ -47,12 +55,12 @@ export const typographyCommon : Typography = {
     fontFamily: Fonts.openSansRegular
   },
   caption: {
-    fontSize: 12,
+    fontSize: 16,
     fontFamily: Fonts.openSansRegular
   },
   overline: {
     fontSize: 14,
-    fontFamily: Fonts.openSansLight
+    fontFamily: Fonts.openSansSemiBold
   }
 }
 
@@ -62,9 +70,9 @@ export const spacing : Spacing = {
   sm: 10,
   md: 20,
   lg: 25,
-  xl: 32,
-  xxl: 40,
-  xxxl: 42,
+  xl: 38,
+  xxl: 45,
+  xxxl: 100,
 }
 
 export const borders : Border = {

@@ -1,7 +1,6 @@
 import React from 'react';
-import { DevSettings } from 'react-native';
 import useAuth from '../hooks/useAuth';
-import BottomTabNavigator from './SignedInNavigator/BottomTabNavigator';
+import { SignedInNavigator } from './SignedInNavigator';
 import SignInNavigator from './SignInNavigator';
 
 export function Routes(){
@@ -15,5 +14,5 @@ export function Routes(){
   // }, [])
 
 
-  return isSignedIn ? <BottomTabNavigator/> : <SignInNavigator/>
+  return isSignedIn ? <SignedInNavigator/> : <SignInNavigator/>
 }
